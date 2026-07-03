@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ChromosomeLearn Phase 6 Responsive is a complete static study app for chromosomal structure and disorders with full lecture-note integration, offline support, flashcards, diagrams, exam mode, visual tools and revision reports." />
+  <title>ChromosomeLearn | Phase 6 Video Enhanced</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#7c2d3a" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#home" class="brand" aria-label="ChromosomeLearn home">
+        <span class="brand-icon" aria-hidden="true">CL</span>
+        <span class="brand-text">ChromosomeLearn</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#study-flow">Study Flow</a>
+        <a href="#video-lesson">Video Lesson</a>
+        <a href="#planner">Plan</a>
+        <a href="#learn">Modules</a>
+        <a href="#complete-notes">Full Notes</a>
+        <a href="#diagrams">Diagrams</a>
+        <a href="#visual-gallery">Images</a>
+        <a href="#visual-tools">Visual Tools</a>
+        <a href="#flashcards">Flashcards</a>
+        <a href="#practice">Practice</a>
+        <a href="#exam">Exam</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#report">Report</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Phase 6 full-content static app</p>
+          <h1>Master every lecture topic with full notes, image support, exam mode, planner and revision report.</h1>
+          <p class="hero-text">
+            This Phase 6 version adds the complete lecture and study-guide content into the website: full notes, procedures, tables, glossary expansion, exam questions, image gallery, offline support and deployment-ready files. No login, no backend and no database.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#study-flow">Follow study flow</a>
+            <a class="button secondary" href="#video-lesson">Watch lesson video</a>
+            <a class="button secondary" href="#planner">Create study plan</a>
+          </div>
+          <div class="hero-jump-row" aria-label="Fast study actions">
+            <a href="#video-lesson">Video lesson</a>
+            <a href="#complete-notes">Full notes</a>
+            <a href="#diagrams">Diagrams</a>
+            <a href="#practice">Practice</a>
+            <a href="#exam">Mock exam</a>
+          </div>
+        </div>
+
+        <aside class="study-panel" aria-labelledby="progressTitle">
+          <p class="panel-label">Your local progress</p>
+          <h2 id="progressTitle"><span id="overallProgress">0</span>% complete</h2>
+          <div class="progress-bar" aria-hidden="true"><span id="overallProgressFill"></span></div>
+          <dl class="mini-stats">
+            <div><dt>Modules</dt><dd id="moduleStat">0/0</dd></div>
+            <div><dt>Checklist</dt><dd id="checklistStat">0/0</dd></div>
+            <div><dt>Difficult cards</dt><dd id="difficultStat">0</dd></div>
+            <div><dt>Best exam</dt><dd id="bestExamStat">0%</dd></div>
+          </dl>
+          <button class="small-button" id="resetProgress" type="button">Reset saved progress</button>
+          <div class="offline-row"><span id="offlineDot" class="offline-dot"></span><span id="offlineStatus">Checking offline support...</span></div>
+          <button class="small-button" id="installApp" type="button" hidden>Install app</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section compact-section study-flow-section" id="study-flow" aria-labelledby="methodTitle">
+      <div class="section-heading compact">
+        <p class="eyebrow">Recommended study flow</p>
+        <h2 id="methodTitle">Follow this order so learning feels easy</h2>
+        <p>Start with planning, then learn the concepts, then revise actively. Each card links to the next best section so mobile users do not have to search around the page.</p>
+      </div>
+      <div class="path-grid flow-grid">
+        <article class="path-card featured-path-card">
+          <span class="step-number">1</span>
+          <h3>Plan your revision</h3>
+          <p>Choose a 3, 5, 7 or 14-day study plan before reading.</p>
+          <a class="path-link" href="#planner">Open study plan</a>
+        </article>
+        <article class="path-card video-path-card">
+          <span class="step-number">2</span>
+          <h3>Watch the video lesson</h3>
+          <p>Use the embedded teaching video as a simple overview before reading the notes.</p>
+          <a class="path-link" href="#video-lesson">Watch video</a>
+        </article>
+        <article class="path-card">
+          <span class="step-number">3</span>
+          <h3>Learn the modules</h3>
+          <p>Read the short module explanations before the detailed notes.</p>
+          <a class="path-link" href="#learn">Start modules</a>
+        </article>
+        <article class="path-card">
+          <span class="step-number">4</span>
+          <h3>Read full notes</h3>
+          <p>Use the Complete Notes section for all detailed lecture content.</p>
+          <a class="path-link" href="#complete-notes">Read full notes</a>
+        </article>
+        <article class="path-card">
+          <span class="step-number">5</span>
+          <h3>Use visuals</h3>
+          <p>Study diagrams, slide images and visual chromosome tools.</p>
+          <a class="path-link" href="#diagrams">View diagrams</a>
+        </article>
+        <article class="path-card">
+          <span class="step-number">6</span>
+          <h3>Recall and practise</h3>
+          <p>Flip flashcards, answer topic questions and then take mock exams.</p>
+          <a class="path-link" href="#flashcards">Start recall</a>
+        </article>
+        <article class="path-card">
+          <span class="step-number">7</span>
+          <h3>Check weak areas</h3>
+          <p>Use your report and checklist to revise what is still difficult.</p>
+          <a class="path-link" href="#report">Open report</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section video-section" id="video-lesson" aria-labelledby="videoLessonTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Teacher video lesson</p>
+        <h2 id="videoLessonTitle">Watch the topic explained before reading the notes</h2>
+        <p>
+          This video has been placed immediately after the study flow so learners can first get a guided overview,
+          then continue into modules, complete notes, diagrams, flashcards and exam practice. The video requires internet access.
+        </p>
+      </div>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-frame" aria-label="Embedded YouTube lesson video on chromosomal structure and disorders">
+            <iframe src="https://www.youtube.com/embed/uAeFftweq0U?si=CQeAH1nVU_v_zzT_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </article>
+        <aside class="video-guide card-panel">
+          <h3>How to use this video</h3>
+          <ol>
+            <li>Watch once before reading to understand the big picture.</li>
+            <li>Open the Modules section and study the same topic in short notes.</li>
+            <li>Use Complete Notes for detailed lecture explanations.</li>
+            <li>Test yourself with flashcards, practice questions and the mock exam.</li>
+          </ol>
+          <a class="button primary" href="#learn">Continue to modules</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="learn" aria-labelledby="learnTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Expandable notes</p>
+        <h2 id="learnTitle">Semester topics organised for easy learning</h2>
+        <p>
+          Each module has a simple explanation, exam focus, clinical connection, memory tip and quick self-test. Phase 6 also includes complete lecture notes below the module cards.
+        </p>
+      </div>
+      <div class="tool-row">
+        <div class="field">
+          <label for="moduleSearch">Search modules</label>
+          <input id="moduleSearch" type="search" placeholder="Try: karyotype, FISH, Down syndrome, methylation" />
+        </div>
+        <div class="field small-field">
+          <label for="moduleCategory">Filter category</label>
+          <select id="moduleCategory">
+            <option value="all">All categories</option>
+            <option value="Basics">Basics</option>
+            <option value="Structure">Structure</option>
+            <option value="Cytogenetics">Cytogenetics</option>
+            <option value="Abnormalities">Abnormalities</option>
+            <option value="Clinical">Clinical</option>
+          </select>
+        </div>
+      </div>
+      <div class="module-stack" id="moduleStack"></div>
+    </section>
+
+
+    <section class="section" id="complete-notes" aria-labelledby="completeNotesTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Phase 6 full integration</p>
+        <h2 id="completeNotesTitle">Complete lecture notes and study-guide content</h2>
+        <p>
+          This section keeps the original learning tools, but also adds the detailed lecture information that was previously too summarized.
+          Use it as the full class-note version before moving to flashcards, practice and exam mode.
+        </p>
+      </div>
+
+      <div class="coverage-banner">
+        <div>
+          <strong>Coverage status:</strong> Full lecture-topic coverage added.
+          The website now includes the lecture objectives, terminology, history, chromosome structure, nomenclature, karyotyping, visualization techniques, chromosomal abnormalities, clinical syndromes, telomeres, epigenetics, prenatal diagnostics and ethics.
+        </div>
+        <a class="button secondary" href="#coverage-audit">View coverage audit</a>
+      </div>
+
+      <div class="complete-notes-grid">
+        <article class="full-note-card">
+          <h3>1. Learning objectives</h3>
+          <p>By the end of the topic, you should be able to describe chromosome structure and organization, interpret basic karyotypes and chromosome nomenclature, understand mechanisms and consequences of chromosomal mutations, and connect chromosomal abnormalities with clinical syndromes.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>2. Historical development of chromosome science</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Year/period</th><th>Milestone</th><th>Why it matters</th></tr></thead>
+              <tbody>
+                <tr><td>1842</td><td>Karl Wilhelm von Nägeli observed thread-like structures in plant nuclei.</td><td>Early observation of chromosomes before the term existed.</td></tr>
+                <tr><td>1879</td><td>Walther Flemming described mitosis and chromosome behaviour during cell division.</td><td>Linked chromosomes to cell division.</td></tr>
+                <tr><td>1888</td><td>Heinrich Wilhelm Waldeyer introduced the term chromosome.</td><td>The name comes from Greek words meaning colour and body.</td></tr>
+                <tr><td>1902</td><td>Sutton and Boveri proposed the chromosome theory of inheritance.</td><td>Connected chromosomes with Mendelian inheritance.</td></tr>
+                <tr><td>1923</td><td>Theophilus Painter incorrectly reported 48 human chromosomes.</td><td>Shows how early microscopy limitations affected chromosome counts.</td></tr>
+                <tr><td>1956</td><td>Tjio and Levan correctly determined the human chromosome number as 46.</td><td>Established the accepted normal human chromosome number.</td></tr>
+                <tr><td>1959</td><td>Lejeune and colleagues identified Down syndrome as trisomy 21.</td><td>First human chromosomal disorder identified.</td></tr>
+                <tr><td>1960</td><td>Philadelphia chromosome discovered in chronic myeloid leukemia.</td><td>First cancer-associated chromosomal abnormality.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="full-note-card">
+          <h3>3. Basic terminology</h3>
+          <ul class="dense-list">
+            <li><strong>Cytogenetics:</strong> study of chromosomes, their structure and inheritance.</li>
+            <li><strong>Chromosome:</strong> highly organised DNA-protein complex carrying genetic information needed for cell function, development and inheritance.</li>
+            <li><strong>Chromatin:</strong> DNA plus histone proteins.</li>
+            <li><strong>Nucleosome:</strong> fundamental chromatin unit; about 146–147 base pairs of DNA wrapped around a histone octamer.</li>
+            <li><strong>Chromatid:</strong> one of the two identical DNA-protein strands of a duplicated chromosome joined at the centromere.</li>
+            <li><strong>Euchromatin:</strong> loosely packed chromatin, usually transcriptionally active and light-staining.</li>
+            <li><strong>Heterochromatin:</strong> densely packed chromatin, mostly inactive and dark-staining.</li>
+            <li><strong>Telomere:</strong> repetitive TTAGGG sequence at chromosome ends; protects chromosome ends and is maintained by telomerase in some cells.</li>
+            <li><strong>Centromere:</strong> primary constriction that separates p and q arms and forms the base for kinetochore assembly.</li>
+            <li><strong>Kinetochore:</strong> protein complex on the centromere that attaches chromosomes to spindle fibres through microtubules.</li>
+          </ul>
+        </article>
+
+        <article class="full-note-card">
+          <h3>4. Chromosome composition and chromatin packaging</h3>
+          <p>Chromosomes are formed by packaging DNA around histone proteins. The histone octamer contains two copies each of H2A, H2B, H3 and H4. DNA wrapped around this octamer forms the nucleosome core particle, often described as a bead on a string. Linker DNA connects nucleosomes, and histone H1 binds the linker DNA to stabilise higher-order chromatin folding.</p>
+          <p>Packaging progresses from DNA double helix to nucleosomes, chromatin fibres, looped domains and finally condensed metaphase chromosomes. This organisation allows long DNA molecules to fit into the nucleus while still allowing gene expression to be regulated.</p>
+          <p><strong>Mitochondrial chromosome:</strong> mitochondrial DNA is about 16 kb long, encodes 37 genes, and is inherited maternally.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>5. Histone and DNA epigenetic modifications</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Modification</th><th>Charge effect</th><th>Common examples</th><th>Main transcription effect</th></tr></thead>
+              <tbody>
+                <tr><td>Methylation</td><td>No charge change</td><td>H3K4me3, H3K9me3, H3K27me3</td><td>Activation or repression depending on the site.</td></tr>
+                <tr><td>Acetylation</td><td>Neutralises positive lysine charge</td><td>H3K9ac, H3K27ac</td><td>Usually opens chromatin and activates transcription.</td></tr>
+                <tr><td>Ubiquitination</td><td>Minimal charge effect</td><td>H2Bub1, H2Aub1</td><td>H2Bub1 often activates; H2Aub1 often represses.</td></tr>
+                <tr><td>Phosphorylation</td><td>Adds negative charge</td><td>Histone tail phosphorylation</td><td>Influences chromatin structure, repair and chromosome condensation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>DNA methylation:</strong> methyl groups are added to cytosine bases, commonly at CpG dinucleotides. 5-methylcytosine is a stable epigenetic mark that can be passed through cell division. DNA methylation often inhibits gene expression by recruiting methyl-CpG binding proteins and chromatin-modifying enzymes. Altered methylation patterns are common in cancer.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>6. Chromosome nomenclature</h3>
+          <p>Chromosome notation starts with the chromosome number, followed by the arm, region and band. The short arm is <strong>p</strong>, the long arm is <strong>q</strong>, and band numbers increase as you move away from the centromere.</p>
+          <ul class="dense-list">
+            <li><strong>15q:</strong> long arm of chromosome 15.</li>
+            <li><strong>15q13:</strong> chromosome 15, long arm, region 1, band 3.</li>
+            <li><strong>7q11.23:</strong> chromosome 7, long arm, region 1, band 1, sub-band .23.</li>
+            <li><strong>4q26-q27:</strong> region between bands q26 and q27 on the long arm of chromosome 4; IL-21 is located in this region.</li>
+            <li><strong>p10/q10:</strong> centromeric region facing the p arm or q arm.</li>
+          </ul>
+          <p>Decimals in cytogenetic location show more detailed banding levels that became possible after improved resolution.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>7. Human chromosome classification</h3>
+          <ul class="dense-list">
+            <li><strong>Autosomes:</strong> chromosomes 1–22.</li>
+            <li><strong>Sex chromosomes:</strong> X and Y.</li>
+            <li><strong>Diploid cells:</strong> somatic body cells with 46 chromosomes.</li>
+            <li><strong>Haploid cells:</strong> gametes with 23 chromosomes.</li>
+            <li><strong>Karyotype:</strong> normal or abnormal chromosome complement of an individual, tissue or cell line.</li>
+            <li><strong>Karyogram:</strong> organised visual arrangement of chromosomes.</li>
+            <li><strong>Ideogram:</strong> simplified diagrammatic chromosome map.</li>
+          </ul>
+          <p>Chromosome size is not directly proportional to the number of genes on that chromosome.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Centromere position</th><th>Description</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr><td>Metacentric</td><td>Arms are approximately equal.</td><td>1, 3, 16, 19, 20.</td></tr>
+                <tr><td>Submetacentric</td><td>One arm is slightly longer.</td><td>2, 4, 5, 6–12, 17, 18, X.</td></tr>
+                <tr><td>Acrocentric</td><td>One arm is much longer; satellites may appear on short arms.</td><td>13, 14, 15, 21, 22; Y is also considered acrocentric but lacks satellites.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="full-note-card">
+          <h3>8. X inactivation, Barr bodies and Y chromatin</h3>
+          <p>An inactive X chromosome may be visible as a Barr body or sex chromatin. The number of Barr bodies is usually the number of X chromosomes minus one.</p>
+          <ul class="dense-list">
+            <li>Normal female 46,XX → 1 Barr body.</li>
+            <li>Turner syndrome 45,X → 0 Barr bodies.</li>
+            <li>Klinefelter syndrome 47,XXY → 1 Barr body.</li>
+          </ul>
+          <p>The distal long arm of the Y chromosome contains a large heterochromatic region that can sometimes be detected as a fluorescent Y-body or Y-chromatin.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>9. Chromosomal visualization techniques</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Technique</th><th>Principle</th><th>Main application</th></tr></thead>
+              <tbody>
+                <tr><td>Karyotyping</td><td>Banding of metaphase chromosomes.</td><td>Aneuploidy and large rearrangements.</td></tr>
+                <tr><td>FISH</td><td>Fluorescent DNA probe hybridisation.</td><td>Specific deletions, duplications, translocations and chromosome counts.</td></tr>
+                <tr><td>Comparative genomic hybridisation</td><td>Patient DNA compared with reference DNA.</td><td>Genome-wide copy number gains and losses.</td></tr>
+                <tr><td>MLPA</td><td>Multiplex ligation-dependent probe amplification; PCR-based dosage testing.</td><td>Small exon-level deletions and duplications.</td></tr>
+                <tr><td>CMA-SNP array</td><td>Hybridisation-based genotyping using SNP probes.</td><td>CNVs, uniparental disomy, loss of heterozygosity and homozygosity regions.</td></tr>
+                <tr><td>Whole-genome sequencing</td><td>Sequence reads aligned to reference genome.</td><td>Aneuploidy, structural rearrangements and breakpoints when read depth or split reads are informative.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="full-note-card">
+          <h3>10. Cell cycle and why metaphase matters</h3>
+          <p>The period between two mitoses is interphase, which includes G1, S and G2. The S phase is the programmed DNA synthesis phase. Mitosis progresses through prophase, prometaphase, metaphase, anaphase and telophase. Karyotyping uses metaphase because chromosomes are maximally condensed and clearly visible.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>11. Karyotyping and banding procedure</h3>
+          <ol class="dense-list">
+            <li><strong>Sample collection:</strong> collect peripheral blood in a heparinised tube.</li>
+            <li><strong>Cell culture:</strong> culture lymphocytes in RPMI-1640 with fetal bovine serum, antibiotics and phytohaemagglutinin.</li>
+            <li><strong>Incubation:</strong> incubate around 37°C for about 72 hours so cells enter mitosis.</li>
+            <li><strong>Mitotic arrest:</strong> add colchicine or colcemid to disrupt spindle fibres and arrest cells at metaphase.</li>
+            <li><strong>Hypotonic treatment:</strong> use 0.075 M KCl to swell cells so chromosomes spread.</li>
+            <li><strong>Fixation:</strong> use cold methanol:acetic acid 3:1 to preserve chromosomes and remove water.</li>
+            <li><strong>Slide preparation:</strong> drop fixed cell suspension onto clean cold slides and air dry.</li>
+            <li><strong>Banding and staining:</strong> trypsin treatment followed by Giemsa produces G-banding.</li>
+            <li><strong>Microscopy and analysis:</strong> observe metaphase spreads, capture images and arrange chromosomes into pairs 1–22 plus sex chromosomes.</li>
+          </ol>
+        </article>
+
+        <article class="full-note-card">
+          <h3>12. Banding patterns and fragile sites</h3>
+          <ul class="dense-list">
+            <li><strong>G-banding:</strong> most common; dark bands are generally AT-rich heterochromatin; light bands are GC-rich euchromatin.</li>
+            <li><strong>R-banding:</strong> reverse of G-banding; produced by hot alkaline treatment before Giemsa staining.</li>
+            <li><strong>Q-banding:</strong> uses quinacrine fluorescence; Q-bright bands are commonly AT-rich. Y heterochromatin fluoresces strongly.</li>
+            <li><strong>C-banding:</strong> stains constitutive heterochromatin, especially centromeres and regions such as 1q, 9q, 16q and Yq.</li>
+          </ul>
+          <p>Fragile sites are non-staining gaps or breaks that indicate regional genomic instability. Fragile X syndrome is linked to a fragile site near the end of the X chromosome long arm, involving the FMR1 gene at Xq27.3. A CGG repeat expansion greater than 200 can silence the gene.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>13. Clinical indications for chromosome analysis</h3>
+          <ul class="dense-list">
+            <li>Early growth and development problems: failure to thrive, developmental delay, dysmorphic features, multiple malformations, short stature, ambiguous genitalia and intellectual disability.</li>
+            <li>Stillbirth and neonatal death: chromosome abnormalities are more common in stillbirths and neonatal deaths than in live births.</li>
+            <li>Fertility problems: amenorrhoea, infertility and recurrent miscarriage.</li>
+            <li>Family follow-up: structural characterisation of genomic imbalance may guide relatives’ testing.</li>
+            <li>Neoplasia: many cancers are associated with chromosome abnormalities used for diagnosis or prognosis.</li>
+            <li>Pregnancy: advanced maternal age increases risk for common chromosomal disorders; NIPT can screen for common trisomies.</li>
+          </ul>
+        </article>
+
+        <article class="full-note-card">
+          <h3>14. Numerical chromosomal abnormalities</h3>
+          <p>Numerical abnormalities include aneuploidy and polyploidy. Aneuploidy is gain or loss of individual chromosomes, while polyploidy is extra whole sets of chromosomes. Nondisjunction during meiosis or mitosis is a major mechanism.</p>
+          <ul class="dense-list">
+            <li><strong>Trisomy:</strong> one extra chromosome.</li>
+            <li><strong>Monosomy:</strong> one copy of a chromosome instead of two.</li>
+            <li><strong>Triploidy:</strong> 69 chromosomes, e.g. 69,XXX; 69,XXY; 69,XYY, often from double fertilisation of an ovum.</li>
+            <li>Most autosomal trisomies are not compatible with life, except mainly 13, 18 and 21.</li>
+            <li>Trisomy 16 is a common cause of first-trimester pregnancy loss and affected embryos usually do not survive past the first trimester.</li>
+          </ul>
+        </article>
+
+        <article class="full-note-card">
+          <h3>15. Key chromosomal syndromes</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Syndrome</th><th>Karyotype / region</th><th>Important features</th></tr></thead>
+              <tbody>
+                <tr><td>Down syndrome</td><td>47,XX/XY,+21</td><td>Intellectual disability, flat facial profile, short fingers. May result from nondisjunction or translocation.</td></tr>
+                <tr><td>Patau syndrome</td><td>47,XX/XY,+13</td><td>Microcephaly, cleft lip/palate, postaxial polydactyly, cardiac defects, deafness and holoprosencephaly.</td></tr>
+                <tr><td>Edwards syndrome</td><td>47,XX/XY,+18</td><td>Severe developmental abnormalities and high early mortality.</td></tr>
+                <tr><td>Turner syndrome</td><td>45,X</td><td>Short stature, underdeveloped ovaries, lack of puberty-related sexual development, heart/kidney abnormalities, cystic neck hygromas and infertility.</td></tr>
+                <tr><td>Klinefelter syndrome</td><td>47,XXY or variants such as XXYY</td><td>Tall eunuchoid body proportions, small testes, azoospermia, sterility, gynaecomastia and increased breast cancer risk compared with 46,XY males.</td></tr>
+                <tr><td>Jacobs syndrome</td><td>47,XYY</td><td>Often taller than average; many are phenotypically normal but some may have cognitive or behavioural differences.</td></tr>
+                <tr><td>Complete androgen insensitivity syndrome</td><td>46,XY</td><td>Female body contours, breast development, absent axillary hair and sparse pubic hair despite XY karyotype.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="full-note-card">
+          <h3>16. Structural chromosomal abnormalities</h3>
+          <p>Structural abnormalities include deletion, duplication, inversion, insertion, translocation, isochromosome formation, dicentric chromosomes and marker chromosomes. Consequences depend on whether genetic material is lost or gained, whether genes are disrupted and whether dosage-sensitive genes are affected.</p>
+          <ul class="dense-list">
+            <li><strong>Haploinsufficiency:</strong> one working copy of a gene is not enough for normal function.</li>
+            <li><strong>Marker chromosome:</strong> extra structurally abnormal chromosome whose origin may need further testing.</li>
+            <li><strong>Isochromosome i(X)(q10):</strong> can be associated with Turner syndrome.</li>
+            <li><strong>Dicentric chromosome:</strong> chromosome with two centromeres, often unstable in division.</li>
+          </ul>
+        </article>
+
+        <article class="full-note-card">
+          <h3>17. Transposable elements</h3>
+          <p>Transposable elements can contribute to structural abnormalities by moving or copying DNA sequences.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Class</th><th>Mechanism</th><th>Examples / enzymes</th></tr></thead>
+              <tbody>
+                <tr><td>Class I retrotransposons</td><td>Copy and paste through an RNA intermediate; RNA is reverse-transcribed back into DNA.</td><td>LINEs, SINEs such as Alu, LTR retrotransposons; reverse transcriptase and integrase are important.</td></tr>
+                <tr><td>Class II DNA transposons</td><td>Cut and paste directly as DNA.</td><td>Transposase cuts and reinserts DNA.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Alu elements are about 300 bp long, occur in more than 1 million copies and make up at least 10% of human DNA. LINE-1 elements may be up to 6 kb and account for nearly 20% of the genome. GC-rich regions tend to be enriched in Alu elements, while LINE sequences are common in AT-rich regions.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>18. Deletions, duplications and imprinting disorders</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Condition</th><th>Chromosomal change</th><th>Core points</th></tr></thead>
+              <tbody>
+                <tr><td>Cri-du-chat syndrome</td><td>Deletion of part of chromosome 5p</td><td>Developmental/cognitive problems and characteristic features.</td></tr>
+                <tr><td>Williams syndrome</td><td>Deletion at 7q11.23 involving about 26 genes</td><td>Neurodevelopmental disorder.</td></tr>
+                <tr><td>Prader-Willi syndrome</td><td>Paternal 15q11-q13 deletion</td><td>Developmental delay, low muscle tone, obesity tendency, hypogonadism, small hands/feet and short stature.</td></tr>
+                <tr><td>Angelman syndrome</td><td>Maternal 15q11-q13 deletion</td><td>Developmental delay, happy disposition and movement discoordination.</td></tr>
+                <tr><td>Charcot-Marie-Tooth disease</td><td>Duplication of 17p12</td><td>Progressive neurological disorder affecting nerves to feet/legs and hands/arms.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Prader-Willi and Angelman syndromes show why parent-of-origin matters: the same deleted region can produce different disease because of genomic imprinting.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>19. Inversions and translocations</h3>
+          <p><strong>Inversion:</strong> a segment breaks and reattaches in reverse orientation. A pericentric inversion includes the centromere, while a paracentric inversion does not. Many inversions do not affect phenotype, but some can cause disease or reproductive risk. Severe haemophilia A may involve inversions, and inverted duplications can be associated with spinal muscular atrophy involving 5q13.</p>
+          <p><strong>Translocation:</strong> a chromosome segment moves to another chromosome. Reciprocal translocations exchange material between non-homologous chromosomes. Nonreciprocal translocation may occur as insertion. The Philadelphia chromosome t(9;22) creates BCR-ABL and is associated with chronic myeloid leukemia. Burkitt lymphoma is linked to t(8;14) with MYC overexpression.</p>
+          <p><strong>Robertsonian translocation:</strong> long arms of non-homologous acrocentric chromosomes fuse near their centromeres. A female carrier may be written 45,XX,der(14;21)(q10;q10). Robertsonian translocation involving chromosome 21 can cause familial Down syndrome; unbalanced offspring risk is higher for carrier mothers than carrier fathers.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>20. Mosaicism</h3>
+          <p>Mosaicism means two or more different chromosome complements exist within one individual. It is commonly caused by nondisjunction in an early postzygotic mitotic division. For example, a zygote with trisomy 21 may lose the extra chromosome in some cells and develop as a 46/47,+21 mosaic.</p>
+          <p>Clinical effect depends on timing of the event, chromosome involved, proportion of abnormal cells and tissues affected. Mosaic Down syndrome or mosaic Turner syndrome may be less severe than non-mosaic forms.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>21. Telomere shortening, aging and cancer</h3>
+          <p>When telomeres become critically short, cells may enter replicative senescence or undergo apoptosis. Short telomeres limit tissue renewal and may contribute to aging features such as weakened immune function, organ dysfunction and hair greying. Premature aging diseases such as Werner syndrome can involve telomere-related problems.</p>
+          <p>Short telomeres can suppress tumour formation by limiting cell proliferation, but critically short telomeres can also create genomic instability through end-to-end fusions, DNA damage and mutations. Many cancers reactivate telomerase, maintaining telomere length and supporting unlimited division.</p>
+        </article>
+
+        <article class="full-note-card">
+          <h3>22. Prenatal diagnostics</h3>
+          <p>Prenatal diagnosis helps determine fetal health, plan pregnancy management, prepare for birth complications, plan neonatal care, decide whether to continue pregnancy and identify issues that may affect future pregnancies.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Test/method</th><th>What it detects</th><th>Typical timing / note</th></tr></thead>
+              <tbody>
+                <tr><td>Ultrasonography</td><td>Structural defects and nuchal translucency marker.</td><td>Used throughout pregnancy; nuchal translucency is first-trimester screening.</td></tr>
+                <tr><td>NIPT / cell-free fetal DNA</td><td>Trisomies 21, 18, 13, sex chromosome disorders and fetal sex.</td><td>Screening test commonly from about 10 weeks.</td></tr>
+                <tr><td>Chorionic villus sampling</td><td>Chromosomal and genetic disorders using placental tissue.</td><td>Diagnostic test usually around 10–13 weeks.</td></tr>
+                <tr><td>Amniocentesis</td><td>Chromosomal/genetic disorders, neural tube defects and infections.</td><td>Diagnostic test usually around 15–20 weeks.</td></tr>
+                <tr><td>Maternal serum alpha-fetoprotein</td><td>Increased in neural tube defects; decreased in Down syndrome.</td><td>Part of serum screening.</td></tr>
+                <tr><td>Maternal serum β-hCG</td><td>Increased in Down syndrome; decreased in Edwards syndrome.</td><td>Part of serum screening.</td></tr>
+                <tr><td>Maternal serum estriol</td><td>Decreased in Down and Edwards syndromes.</td><td>Part of serum screening.</td></tr>
+                <tr><td>Preimplantation genetic diagnosis / testing</td><td>Embryo genetic testing before implantation.</td><td>Used with assisted reproduction.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="full-note-card">
+          <h3>23. Genetic counselling and ethical considerations</h3>
+          <p>Genetic counselling is important in chromosomal disorders because results can affect reproductive decisions, family testing and psychological wellbeing. Prenatal screening and diagnosis require informed consent, confidentiality and careful explanation of options. Cancer cytogenetic profiles may also influence prognosis and treatment planning.</p>
+        </article>
+
+        <article class="full-note-card" id="coverage-audit">
+          <h3>24. Content coverage audit</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Lecture/study-guide area</th><th>Website location</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Objectives and basic terminology</td><td>Learn modules + Complete Notes 1–3 + Glossary</td><td>Included</td></tr>
+                <tr><td>Historical timeline</td><td>Complete Notes 2</td><td>Added in Phase 6</td></tr>
+                <tr><td>Chromosome composition, H1, nucleosomes and mitochondrial chromosome</td><td>Complete Notes 4</td><td>Added in Phase 6</td></tr>
+                <tr><td>Histone modifications and DNA methylation</td><td>Complete Notes 5 + Learn modules</td><td>Expanded in Phase 6</td></tr>
+                <tr><td>ISCN-style nomenclature examples</td><td>Complete Notes 6 + Notation decoder</td><td>Included</td></tr>
+                <tr><td>Karyotype, ideogram and chromosome centromere types</td><td>Complete Notes 7 + Visual tools</td><td>Included</td></tr>
+                <tr><td>Barr body and Y-chromatin</td><td>Complete Notes 8</td><td>Added in Phase 6</td></tr>
+                <tr><td>Karyotyping, FISH, CGH, MLPA, SNP array and WGS</td><td>Complete Notes 9 + Learn modules</td><td>Expanded in Phase 6</td></tr>
+                <tr><td>Cell cycle and full banding procedure</td><td>Complete Notes 10–12</td><td>Added in Phase 6</td></tr>
+                <tr><td>Clinical indications for chromosome analysis</td><td>Complete Notes 13</td><td>Added in Phase 6</td></tr>
+                <tr><td>Numerical abnormalities and syndromes</td><td>Complete Notes 14–15 + Syndrome comparison + Exam mode</td><td>Expanded in Phase 6</td></tr>
+                <tr><td>Structural abnormalities, transposable elements, deletions, duplications, inversions, translocations and mosaicism</td><td>Complete Notes 16–20 + Diagrams + Image Gallery</td><td>Expanded in Phase 6</td></tr>
+                <tr><td>Telomeres, aging and cancer</td><td>Complete Notes 21 + Learn modules</td><td>Included</td></tr>
+                <tr><td>Prenatal diagnostics, maternal serum markers, PGD/PGT and ethics</td><td>Complete Notes 22–23 + Timeline + Report</td><td>Expanded in Phase 6</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section alt-section" id="flashcards" aria-labelledby="flashcardsTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Flashcards</p>
+        <h2 id="flashcardsTitle">Revise key terms fast</h2>
+        <p>Click the card to flip it. Mark hard cards so you can revisit them later.</p>
+      </div>
+      <div class="flashcard-layout">
+        <aside class="flashcard-tools">
+          <div class="field">
+            <label for="flashcardFilter">Card set</label>
+            <select id="flashcardFilter">
+              <option value="all">All cards</option>
+              <option value="basics">Basic terms</option>
+              <option value="techniques">Techniques</option>
+              <option value="syndromes">Syndromes</option>
+              <option value="abnormalities">Abnormalities</option>
+              <option value="history">History & cell cycle</option>
+              <option value="epigenetics">Epigenetics</option>
+              <option value="prenatal">Prenatal & ethics</option>
+              <option value="difficult">Difficult only</option>
+            </select>
+          </div>
+          <div class="flash-actions">
+            <button class="button secondary" id="prevCard" type="button">Previous</button>
+            <button class="button secondary" id="nextCard" type="button">Next</button>
+            <button class="button ghost" id="shuffleCards" type="button">Shuffle</button>
+            <button class="button ghost" id="markDifficult" type="button">Mark difficult</button>
+          </div>
+          <p class="helper-text" id="flashcardCounter">Card 1 of 1</p>
+        </aside>
+        <button class="flashcard" id="flashcard" type="button" aria-live="polite">
+          <span class="flash-label" id="flashLabel">Term</span>
+          <strong id="flashTerm">Loading...</strong>
+          <span id="flashAnswer">Click to show answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" id="diagrams" aria-labelledby="diagramsTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Diagram lab</p>
+        <h2 id="diagramsTitle">Simple diagrams for difficult concepts</h2>
+        <p>Choose a diagram and read the explanation beside it.</p>
+      </div>
+      <div class="diagram-tabs" role="tablist" aria-label="Diagram choices">
+        <button class="tab-button active" data-diagram="chromatin" type="button">Chromatin packaging</button>
+        <button class="tab-button" data-diagram="anatomy" type="button">Chromosome anatomy</button>
+        <button class="tab-button" data-diagram="nomenclature" type="button">Nomenclature</button>
+        <button class="tab-button" data-diagram="abnormalities" type="button">Abnormalities</button>
+        <button class="tab-button" data-diagram="prenatal" type="button">Prenatal timeline</button>
+      </div>
+      <div class="diagram-panel">
+        <div class="diagram-canvas" id="diagramCanvas" aria-live="polite"></div>
+        <article class="diagram-note">
+          <p class="panel-label" id="diagramLabel">Diagram</p>
+          <h3 id="diagramTitle">Loading diagram...</h3>
+          <p id="diagramDescription"></p>
+          <ul id="diagramBullets"></ul>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section image-section" id="visual-gallery" aria-labelledby="visualGalleryTitle">
+      <div class="section-heading">
+        <p class="eyebrow">New image gallery</p>
+        <h2 id="visualGalleryTitle">Study the topics with real diagrams and lecture visuals</h2>
+        <p>
+          This section adds images from the uploaded lecture slides and curated web image references for chromosome structure,
+          chromatin packaging, karyotyping, FISH, structural abnormalities and prenatal testing. Slide images are stored locally
+          in the project; web reference images load online and include source links.
+        </p>
+      </div>
+
+      <div class="gallery-subheading">
+        <h3>Images included from your lecture slides</h3>
+        <p>These are available inside the folder and can still display when the site is used offline.</p>
+      </div>
+      <div class="image-gallery-grid local-gallery">
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_chromatin_packaging.jpg" alt="Chromatin packaging hierarchy" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Chromatin packaging hierarchy</h3>
+            <p>Shows DNA folding into nucleosomes, chromatin fibres and chromosomes. Use it when studying nucleosome structure and histone packaging.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_chromosome_anatomy.jpg" alt="Chromosome anatomy" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Chromosome anatomy</h3>
+            <p>Labels chromatids, telomeres, centromere, p arm and q arm for quick revision.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_human_karyotype.jpg" alt="Human karyotype" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Human karyotype</h3>
+            <p>Useful for remembering chromosome arrangement, autosomes and sex chromosomes.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_fish_metaphase_interphase.jpg" alt="FISH visualisation" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>FISH visualisation</h3>
+            <p>Shows fluorescence signals on chromosomes and nuclei to support the FISH topic.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_microarray_cgh.jpg" alt="Chromosomal microarray / CGH" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Chromosomal microarray / CGH</h3>
+            <p>Shows how patient and control DNA signals reveal gains or losses across the genome.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_structural_abnormalities.jpg" alt="Structural abnormalities" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Structural abnormalities</h3>
+            <p>Summarises deletion, duplication, inversion and translocation patterns.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_inversion_loop.jpg" alt="Inversion loops" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Inversion loops</h3>
+            <p>Helps distinguish paracentric and pericentric inversion outcomes during meiosis.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_robertsonian_translocation.jpg" alt="Robertsonian translocation" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Robertsonian translocation</h3>
+            <p>Shows possible gametes and Down syndrome risk in rob(14;21) carriers.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_prenatal_diagnostics.jpg" alt="Prenatal diagnostics" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Prenatal diagnostics</h3>
+            <p>Supports the CVS/amniocentesis and prenatal testing discussion.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-frame"><img src="assets/img/lesson-gallery/slide_preimplantation_genetic_diagnosis.jpg" alt="Preimplantation genetic diagnosis" loading="lazy" /></div>
+          <div class="image-card-body">
+            <span class="source-chip">From the lecture slides</span>
+            <h3>Preimplantation genetic diagnosis</h3>
+            <p>Illustrates embryo biopsy and genetic testing before implantation.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gallery-subheading web-heading">
+        <h3>Curated web image references</h3>
+        <p>These were selected from educational chromosome resources and Wikimedia/NHGRI pages. They need internet access when the local site is opened.</p>
+      </div>
+      <div class="image-gallery-grid web-gallery">
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chromosome%20packaging.svg" alt="Chromosome packaging" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">Wikimedia Commons</span>
+            <h3>Chromosome packaging</h3>
+            <p>A clear external diagram of chromosome packaging from DNA to condensed chromosome.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:Chromosome_packaging.svg" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Basic%20units%20of%20chromatin%20structure.svg" alt="Basic units of chromatin" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">Wikimedia Commons</span>
+            <h3>Basic units of chromatin</h3>
+            <p>Shows histone octamers, DNA wrapping, nucleosomes and chromatin fibre formation.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:Basic_units_of_chromatin_structure.svg" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/NHGRI%20human%20male%20karyotype.png" alt="Normal male karyotype" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">NHGRI / Wikimedia Commons</span>
+            <h3>Normal male karyotype</h3>
+            <p>A reference karyotype for comparing normal 46,XY arrangement with abnormal examples.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:NHGRI_human_male_karyotype.png" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Human%20karyotype%20%28263%2016%29%20Karyotype%20Human%2047%2C%20XY%2C%20%2B21%20%28Down%20syndrome%29.jpg" alt="Trisomy 21 karyotype" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">Wikimedia Commons</span>
+            <h3>Trisomy 21 karyotype</h3>
+            <p>A karyotype example showing 47,XY,+21 for Down syndrome revision.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:Human_karyotype_(263_16)_Karyotype_Human_47,_XY,_%2B21_(Down_syndrome).jpg" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/FISH%20%28Fluorescent%20In%20Situ%20Hybridization%29.jpg" alt="FISH principle diagram" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">Wikimedia Commons</span>
+            <h3>FISH principle diagram</h3>
+            <p>A simple diagram showing labelled probes binding to target DNA in the FISH method.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:FISH_(Fluorescent_In_Situ_Hybridization).jpg" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+        <article class="image-card web-image">
+          <div class="image-frame"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/NHGRI%20Fact%20Sheet-%20Flourescence%20In%20Situ%20Hybridization%20%28FISH%29%20%2826990477751%29.jpg" alt="NHGRI FISH fact sheet" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.image-card').classList.add('image-error')" /></div>
+          <div class="image-card-body">
+            <span class="source-chip online">NHGRI / Wikimedia Commons</span>
+            <h3>NHGRI FISH fact sheet</h3>
+            <p>A learner-friendly FISH fact-sheet image showing probe labelling and hybridisation.</p>
+            <a class="credit-link" href="https://commons.wikimedia.org/wiki/File:NHGRI_Fact_Sheet-_Flourescence_In_Situ_Hybridization_(FISH)_(26990477751).jpg" target="_blank" rel="noopener">Open source page</a>
+            <p class="image-fallback">Image could not load offline. Use the source page link when connected.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="credit-panel">
+        <h3>Image use note</h3>
+        <p>
+          The lecture-slide images are included for your private study use from the file you uploaded. The web images are linked with
+          source pages and attribution notes in <code>IMAGE_CREDITS.md</code>. If you later publish this website publicly, review the
+          credit file and keep the source links visible.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="section alt-section" id="visual-tools" aria-labelledby="visualToolsTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Phase 4 visual tools</p>
+        <h2 id="visualToolsTitle">Practise chromosome interpretation visually</h2>
+        <p>
+          Use these tools to move from memorising words to recognising chromosome patterns, karyotype notation,
+          clinical syndromes and prenatal testing choices.
+        </p>
+      </div>
+
+      <div class="visual-grid">
+        <article class="visual-card wide-card" aria-labelledby="karyotypeToolTitle">
+          <div class="visual-card-head">
+            <div>
+              <p class="panel-label">Karyotype explorer</p>
+              <h3 id="karyotypeToolTitle">Choose a karyotype and see what changes</h3>
+            </div>
+            <span class="tool-badge">Interactive</span>
+          </div>
+          <div class="field">
+            <label for="karyotypeSelect">Select example</label>
+            <select id="karyotypeSelect"></select>
+          </div>
+          <div class="karyotype-board" id="karyotypeBoard" aria-live="polite"></div>
+          <div class="insight-box" id="karyotypeInsight"></div>
+        </article>
+
+        <article class="visual-card" aria-labelledby="decoderTitle">
+          <div class="visual-card-head">
+            <div>
+              <p class="panel-label">Notation decoder</p>
+              <h3 id="decoderTitle">Decode chromosome locations</h3>
+            </div>
+            <span class="tool-badge">Practice</span>
+          </div>
+          <div class="field">
+            <label for="notationInput">Type a notation</label>
+            <input id="notationInput" type="text" value="15q13" placeholder="Examples: 15q13, 4q26-q27, Xq27.3, 47,XX,+21" />
+          </div>
+          <button class="button primary full-button" id="decodeNotation" type="button">Decode notation</button>
+          <div class="decoder-output" id="decoderOutput" aria-live="polite"></div>
+        </article>
+
+        <article class="visual-card" aria-labelledby="syndromeCompareTitle">
+          <div class="visual-card-head">
+            <div>
+              <p class="panel-label">Syndrome comparison</p>
+              <h3 id="syndromeCompareTitle">Compare common chromosomal disorders</h3>
+            </div>
+            <span class="tool-badge">Clinical</span>
+          </div>
+          <div class="field">
+            <label for="syndromeFilter">Filter group</label>
+            <select id="syndromeFilter">
+              <option value="all">All disorders</option>
+              <option value="autosomal">Autosomal aneuploidy</option>
+              <option value="sex">Sex chromosome aneuploidy</option>
+              <option value="structural">Structural/deletion disorder</option>
+            </select>
+          </div>
+          <div class="syndrome-list" id="syndromeList"></div>
+        </article>
+
+        <article class="visual-card wide-card" aria-labelledby="prenatalTimelineTitle">
+          <div class="visual-card-head">
+            <div>
+              <p class="panel-label">Prenatal testing timeline</p>
+              <h3 id="prenatalTimelineTitle">Know screening versus diagnosis</h3>
+            </div>
+            <span class="tool-badge">Ethics-aware</span>
+          </div>
+          <div class="timeline-strip" id="prenatalTimeline"></div>
+          <div class="insight-box soft" id="prenatalInsight">
+            Screening estimates risk. Diagnostic testing gives a more definitive answer but may involve invasive sampling.
+            Counselling, informed consent and confidentiality are essential.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="practice" aria-labelledby="practiceTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Topic practice</p>
+        <h2 id="practiceTitle">Answer questions by topic</h2>
+        <p>Use topic practice to strengthen weak areas before taking timed exam mode.</p>
+      </div>
+      <div class="practice-layout">
+        <aside class="practice-sidebar">
+          <div class="field">
+            <label for="practiceTopic">Choose topic</label>
+            <select id="practiceTopic"></select>
+          </div>
+          <div class="practice-score">
+            <span id="practiceCounter">Question 1 of 1</span>
+            <strong id="practiceScore">Score: 0</strong>
+          </div>
+          <button class="button ghost" id="restartPractice" type="button">Restart topic</button>
+        </aside>
+        <article class="practice-card">
+          <p class="panel-label" id="practiceTopicLabel">Topic</p>
+          <h3 id="practiceQuestion">Loading...</h3>
+          <div class="answers" id="practiceAnswers"></div>
+          <p class="feedback" id="practiceFeedback"></p>
+          <button class="button primary" id="nextPractice" type="button">Next question</button>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section" id="exam" aria-labelledby="examTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Phase 3 exam mode retained</p>
+        <h2 id="examTitle">Timed mock exam with review</h2>
+        <p>
+          Choose the number of questions, start the test, answer without notes, then review your score,
+          missed questions and weak topics. Results are saved only in this browser.
+        </p>
+      </div>
+
+      <div class="exam-grid">
+        <aside class="exam-setup card-panel" id="examSetup">
+          <h3>Exam settings</h3>
+          <div class="field">
+            <label for="examLength">Number of questions</label>
+            <select id="examLength">
+              <option value="10">10 questions</option>
+              <option value="15" selected>15 questions</option>
+              <option value="25">25 questions</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="examTime">Time limit</label>
+            <select id="examTime">
+              <option value="0">No timer</option>
+              <option value="10">10 minutes</option>
+              <option value="15" selected>15 minutes</option>
+              <option value="25">25 minutes</option>
+            </select>
+          </div>
+          <button class="button primary full-button" id="startExam" type="button">Start mock exam</button>
+          <p class="helper-text">Question order and answer order are randomized each time.</p>
+        </aside>
+
+        <article class="exam-card card-panel" id="examCard" hidden>
+          <div class="exam-topbar">
+            <div>
+              <p class="panel-label" id="examTopicLabel">Topic</p>
+              <strong id="examProgressText">Question 1 of 15</strong>
+            </div>
+            <div class="timer-pill" id="examTimer">15:00</div>
+          </div>
+          <div class="mini-progress"><span id="examProgressFill"></span></div>
+          <h3 id="examQuestion">Question text</h3>
+          <div class="answers" id="examAnswers"></div>
+          <div class="exam-actions">
+            <button class="button secondary" id="prevExam" type="button">Previous</button>
+            <button class="button secondary" id="nextExam" type="button">Next</button>
+            <button class="button primary" id="submitExam" type="button">Submit exam</button>
+          </div>
+        </article>
+
+        <aside class="exam-history card-panel">
+          <h3>Score history</h3>
+          <div class="history-list" id="examHistoryList"></div>
+          <button class="small-button" id="clearExamHistory" type="button">Clear exam history</button>
+        </aside>
+      </div>
+
+      <div class="exam-results" id="examResults" hidden>
+        <div class="result-summary card-panel">
+          <p class="eyebrow">Result</p>
+          <h3 id="examScoreTitle">Score: 0%</h3>
+          <p id="examScoreSummary"></p>
+          <div class="result-bars" id="topicBreakdown"></div>
+        </div>
+        <div class="card-panel">
+          <h3>Targeted revision plan</h3>
+          <ul class="revision-plan" id="revisionPlan"></ul>
+        </div>
+        <div class="card-panel full-span">
+          <h3>Question review</h3>
+          <div class="review-list" id="examReviewList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split" id="glossary" aria-labelledby="glossaryTitle">
+      <div class="section-heading side-heading">
+        <p class="eyebrow">Glossary</p>
+        <h2 id="glossaryTitle">Search key terms and meanings</h2>
+        <p>Use this to revise definitions quickly before reading or answering questions.</p>
+      </div>
+      <div class="glossary-box">
+        <div class="tool-row no-margin">
+          <div class="field grow">
+            <label for="glossarySearch">Search glossary</label>
+            <input id="glossarySearch" type="search" placeholder="Example: telomere, trisomy, chromatid, Robertsonian" />
+          </div>
+          <div class="field small-field">
+            <label for="glossaryCategory">Category</label>
+            <select id="glossaryCategory">
+              <option value="all">All</option>
+              <option value="basic">Basic</option>
+              <option value="technique">Technique</option>
+              <option value="abnormality">Abnormality</option>
+              <option value="syndrome">Syndrome</option>
+              <option value="prenatal">Prenatal</option>
+            </select>
+          </div>
+        </div>
+        <div id="glossaryResults" class="glossary-results" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="checklist" aria-labelledby="checklistTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Revision checklist</p>
+        <h2 id="checklistTitle">What to know before exams</h2>
+        <p>Tick each outcome when you can explain it without looking at your notes.</p>
+      </div>
+      <div class="checklist-grid" id="checklistGrid"></div>
+    </section>
+
+
+
+    <section class="section alt-section" id="planner" aria-labelledby="plannerTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Phase 5 study planner</p>
+        <h2 id="plannerTitle">Generate a simple revision timetable</h2>
+        <p>Choose how many days you have. The app will spread the chromosomal structure and disorders topics into a realistic plan.</p>
+      </div>
+      <div class="planner-layout">
+        <aside class="card-panel planner-controls">
+          <div class="field">
+            <label for="plannerDays">Number of study days</label>
+            <select id="plannerDays">
+              <option value="3">3-day crash revision</option>
+              <option value="5">5-day focused revision</option>
+              <option value="7" selected>7-day balanced revision</option>
+              <option value="14">14-day gentle revision</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="plannerFocus">Revision style</label>
+            <select id="plannerFocus">
+              <option value="balanced" selected>Balanced learning</option>
+              <option value="exam">Exam-focused</option>
+              <option value="weak">Weak-area recovery</option>
+            </select>
+          </div>
+          <button class="button primary" id="generatePlan" type="button">Generate plan</button>
+          <button class="button secondary" id="printPlan" type="button">Print plan</button>
+        </aside>
+        <div class="plan-board" id="planBoard" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="report" aria-labelledby="reportTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Revision report</p>
+        <h2 id="reportTitle">See what you have completed and what to revise next</h2>
+        <p>This report is generated from your local browser progress only. Nothing is uploaded anywhere.</p>
+      </div>
+      <div class="report-layout">
+        <div class="card-panel report-card" id="revisionReport" aria-live="polite"></div>
+        <aside class="card-panel report-actions">
+          <h3>Progress tools</h3>
+          <p>Back up your local progress, restore it later, or download a plain-text report for revision.</p>
+          <div class="action-stack">
+            <button class="button primary" id="refreshReport" type="button">Refresh report</button>
+            <button class="button secondary" id="downloadReport" type="button">Download report</button>
+            <button class="button secondary" id="exportProgress" type="button">Export progress JSON</button>
+            <label class="button ghost file-button" for="importProgress">Import progress JSON</label>
+            <input id="importProgress" type="file" accept="application/json" hidden />
+            <button class="button ghost" id="printReport" type="button">Print report</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section roadmap" id="roadmap" aria-labelledby="roadmapTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Build roadmap</p>
+        <h2 id="roadmapTitle">Website development phases</h2>
+      </div>
+      <div class="roadmap-grid">
+        <article class="roadmap-card done">
+          <span>Phase 1</span>
+          <h3>Static foundation</h3>
+          <p>Homepage, modules, glossary, quick quiz, checklist and local progress.</p>
+        </article>
+        <article class="roadmap-card done">
+          <span>Phase 2</span>
+          <h3>Learning tools</h3>
+          <p>Flashcards, diagrams, expandable notes, topic practice and improved study flow.</p>
+        </article>
+        <article class="roadmap-card done">
+          <span>Phase 3</span>
+          <h3>Exam mode</h3>
+          <p>Timed mock test, randomized questions, score review, saved history and weak-topic tracking.</p>
+        </article>
+        <article class="roadmap-card done">
+          <span>Phase 4</span>
+          <h3>Interactive chromosome trainer</h3>
+          <p>Karyotype explorer, notation decoder, syndrome comparison and prenatal testing timeline.</p>
+        </article>
+        <article class="roadmap-card active">
+          <span>Phase 5</span>
+          <h3>Final static app and deployment</h3>
+          <p>Offline support, installable PWA files, study planner, revision report, progress backup and deployment guide.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>ChromosomeLearn Phase 6 video-enhanced static website. No login. No backend. Progress, plans and exam scores are saved only in this browser.</p>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

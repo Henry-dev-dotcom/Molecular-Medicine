@@ -1,0 +1,17 @@
+{
+  "name": "ChromosomeLearn",
+  "short_name": "ChromosomeLearn",
+  "description": "Responsive video-enhanced full-content static study app for chromosomal structure and disorders.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8f7",
+  "theme_color": "#7c2d3a",
+  "icons": [
+    {
+      "src": "assets/img/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
