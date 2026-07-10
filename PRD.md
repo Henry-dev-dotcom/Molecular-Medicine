@@ -1,73 +1,97 @@
-# Product Requirements Document: ChromosomeLearn Phase 6
+# Product Requirements Document: ChromosomeLearn Phase 1
 
-## Product name
-ChromosomeLearn
+## Product
 
-## Phase
-Phase 6 — Full Content Integration + Responsive Learning Flow Upgrade + Video Embed
+ChromosomeLearn Course Centre
 
-## Goal
-Turn the existing static study app into a fuller, mobile-friendly learning website that contains the complete lecture-note and study-guide coverage for chromosomal structure and disorders, includes a teacher-made YouTube lesson video, and stays fully static with no login, backend or database.
+## Phase objective
 
-## Target users
-Students learning chromosomal structure, cytogenetics, chromosome analysis, abnormalities, prenatal diagnosis and chromosomal disorders.
+Create a reliable two-course foundation that separates Theory of Molecular Medicine from Clinical Biostatistics while preserving the existing Molecular Medicine learning experience.
 
-## Problem
-Earlier phases provided strong summaries, flashcards and quizzes, but some lecture details were simplified or missing. Students need a single website that contains both easy-learning summaries and complete notes for detailed exam preparation.
+## Users
 
-## Phase 6 objectives
+Postgraduate health-science students studying Molecular Medicine and Clinical Biostatistics.
 
-1. Add all missing lecture details into a complete notes section.
-2. Preserve the simplified learning modules for quick revision.
-3. Expand exam preparation with additional questions covering the newly added details.
-4. Expand glossary, flashcards and checklist items.
-5. Add a transparent coverage audit so the student can see where each lecture topic appears.
-6. Keep the website static, offline-ready and easy to deploy.
-7. Improve mobile and tablet scaling so learners can comfortably study on phones and iPads/tablets.
-8. Arrange the learning journey in a clearer order: plan, watch video, learn, read full notes, use visuals, recall, practise, exam, report.
-9. Place the YouTube teaching video in a suitable learning position before the modules.
+## Core requirements
 
-## Functional requirements
+### 1. Course Centre
 
-### Complete notes
-- Include full lecture coverage arranged into numbered sections.
-- Use readable tables for history, histone modifications, chromosome classification, techniques, syndromes, prenatal testing and coverage audit.
-- Include detailed procedure notes for karyotyping and banding.
-- Include clinical indications, transposable elements and ethics.
+- Display both courses clearly.
+- Make both course cards functional.
+- Show the currently selected course.
+- Display a simple progress summary for each course.
 
-### Learning tools
-- Keep all existing modules, flashcards, diagrams, image gallery, visual tools, practice, planner, exam mode, glossary, checklist and report.
-- Add a responsive YouTube video lesson section immediately after the Recommended Study Flow.
-- Add Phase 6 modules to the Learn section.
-- Add more flashcards and glossary terms.
-- Add more exam-bank questions.
+### 2. Separate course workspaces
 
-### Static architecture
-- No login.
-- No backend.
-- No database.
-- Browser localStorage only for progress.
-- Service worker for offline support after first load.
+- Keep the full existing Molecular Medicine workspace.
+- Provide an active Clinical Biostatistics workspace.
+- Do not claim that Phase 2 lesson content is already complete.
+- Prepare Biostatistics module, lesson, assessment and progress containers.
 
-## Non-functional requirements
+### 3. Course-specific navigation
 
-- Mobile responsive with readable card spacing, full-width tap targets and no horizontal page overflow.
-- Tablet responsive with uncluttered navigation and two-column learning grids where appropriate.
-- Offline friendly for local files; the embedded YouTube video requires internet access.
-- Print friendly.
-- Lightweight enough to open directly from local files.
-- Clear language for students.
+- Keep the Course Centre link always visible.
+- Show only the navigation links relevant to the active course.
+- Save the selected course locally.
+- Restore the correct course from a direct section link.
 
-## Success criteria
+### 4. Separate progress storage
 
-- All major lecture areas are represented in the website.
-- A learner can read detailed notes, revise key summaries, practise questions and generate a report.
-- The site runs by opening `index.html` without server-side setup.
+- Store Molecular Medicine data under a molecular namespace.
+- Store Clinical Biostatistics data under a biostatistics namespace.
+- Reset each course independently.
+- Preserve earlier Molecular Medicine progress through key migration.
+- Export and import both courses in one versioned backup.
 
-## Future phase options
+### 5. Branding and documentation
 
-- Add more lessons beyond chromosomal structure and disorders.
-- Add downloadable PDF export from the website.
-- Add voice explanations for each topic.
-- Add instructor-mode slides or printable worksheets.
-- Add backend only if accounts, synced progress or teacher dashboards become necessary.
+- Remove outdated phase-only branding from the visible interface.
+- Update the manifest, service worker, README and PRD.
+- Remove obsolete backup files from the release archive.
+
+### 6. Accessibility and responsiveness
+
+- Use accessible buttons, labels and headings.
+- Hide inactive course panels with the native `hidden` attribute.
+- Maintain keyboard-accessible navigation.
+- Support desktop, tablet and mobile layouts.
+
+### 7. Offline foundation
+
+- Use a new cache version.
+- Delete previous caches on activation.
+- Cache all required local assets.
+- Return the cached main page when offline navigation fails.
+
+## Acceptance criteria
+
+- Both course buttons open a usable workspace.
+- The navigation changes correctly between courses.
+- No disabled Biostatistics course button remains.
+- Molecular Medicine functions remain intact.
+- Biostatistics readiness progress persists after reload.
+- Resetting Molecular Medicine does not remove Biostatistics readiness data.
+- There are no duplicate IDs or broken internal links.
+- JavaScript syntax validation passes.
+- Manifest and service-worker references point to existing files.
+- The release archive contains no old phase backup files.
+
+## Phase 2 hand-off
+
+The Biostatistics workspace exposes stable section IDs for the next phase:
+
+- `biostats-overview`
+- `biostats-modules`
+- `biostats-lesson-format`
+- `biostats-assessment`
+- `biostats-progress`
+
+
+## Molecular Medicine structural-abnormality content update
+
+The deployed platform must include expanded isochromosome content and six locally stored, accessible structural-change diagrams covering deletion, duplication, inversion, reciprocal translocation, Robertsonian translocation and isochromosome formation. The material must explain gene-dosage consequences, balanced versus unbalanced rearrangements, i(X)(q10) notation, Turner syndrome relevance and appropriate cytogenetic testing.
+
+
+## Placeholder topic expansion
+
+The platform reserves visible, under-construction sections for four new Theory of Molecular Medicine topics and two advanced Clinical Biostatistics topics. Placeholder modules must not count against student completion progress until substantive content is published.

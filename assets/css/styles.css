@@ -2601,3 +2601,622 @@ canvas {
     width: 100%;
   }
 }
+
+/* Phase 1 course centre */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.course-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+}
+.course-card h3 { margin-top: .5rem; }
+.course-tag {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.active-course { outline: 2px solid rgba(255,255,255,.25); }
+
+/* Phase 1 completed two-course platform */
+[hidden] {
+  display: none !important;
+}
+
+.course-selection {
+  padding-top: 3.25rem;
+  padding-bottom: 2.5rem;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(216, 159, 91, 0.20), transparent 22rem),
+    linear-gradient(180deg, rgba(255, 250, 241, 0.96), rgba(246, 241, 232, 0.72));
+  border-bottom: 1px solid var(--line);
+}
+
+.course-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+
+.course-card {
+  min-height: 100%;
+  padding: 1.65rem;
+  border-radius: 24px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.course-card:hover,
+.course-card:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(119, 51, 68, .48);
+  box-shadow: 0 20px 52px rgba(88, 37, 54, .15);
+}
+
+.course-card.active-course {
+  outline: 3px solid rgba(119, 51, 68, .18);
+  border-color: var(--primary);
+}
+
+.course-card h3 {
+  margin: .45rem 0 .55rem;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+}
+
+.course-card > p:not(.course-tag) {
+  flex: 1;
+  color: var(--muted);
+}
+
+.course-card-topline,
+.course-progress-line {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.course-tag {
+  margin: 0;
+  color: var(--primary);
+  font-size: .76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.course-status {
+  padding: .25rem .62rem;
+  border-radius: 999px;
+  background: rgba(31, 122, 79, .10);
+  color: var(--good);
+  font-size: .77rem;
+  font-weight: 800;
+}
+
+.course-progress-line {
+  margin: 1rem 0 1.15rem;
+  padding-top: .85rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.course-progress-line strong {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.course-centre-note {
+  max-width: var(--max);
+  margin: 1.25rem auto 0;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(31, 122, 79, .22);
+  border-radius: 16px;
+  background: rgba(31, 122, 79, .07);
+  color: var(--ink);
+}
+
+.nav-course-label {
+  margin: 0 .25rem;
+  padding: .38rem .68rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: white;
+  font-size: .74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.course-nav-group {
+  display: contents;
+}
+
+.course-panel {
+  min-height: 40vh;
+}
+
+.biostats-hero .hero-bg::before {
+  background: rgba(31, 122, 79, .13);
+}
+
+.biostats-hero .hero-bg::after {
+  background: rgba(216, 159, 91, .18);
+}
+
+.foundation-grid,
+.assessment-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.foundation-card {
+  padding: 1.35rem;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.foundation-card > span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 .45rem;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 900;
+}
+
+.foundation-card h3,
+.assessment-grid h3 {
+  margin: .8rem 0 .35rem;
+}
+
+.foundation-card p,
+.assessment-grid p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.soft-section {
+  background: rgba(255, 250, 241, .62);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.lesson-format-list {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  counter-reset: lesson-step;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+}
+
+.lesson-format-list li {
+  counter-increment: lesson-step;
+  position: relative;
+  padding: 1rem 1rem 1rem 3.4rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-strong);
+}
+
+.lesson-format-list li::before {
+  content: counter(lesson-step);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  font-size: .78rem;
+  font-weight: 900;
+}
+
+.biostat-readiness-list {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  gap: .85rem;
+}
+
+.biostat-readiness-list .check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+}
+
+.biostat-readiness-list .check-item input {
+  margin-top: .3rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--primary);
+}
+
+.biostat-readiness-list .check-item span {
+  display: grid;
+  gap: .15rem;
+}
+
+.biostat-readiness-list small {
+  color: var(--muted);
+}
+
+.course-switch-footer {
+  max-width: 920px;
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.phase-status-grid .roadmap-card {
+  min-height: 100%;
+}
+
+@media (max-width: 1120px) {
+  .nav-course-label {
+    display: none;
+  }
+
+  .nav-links {
+    gap: .15rem;
+  }
+
+  .nav-links a {
+    padding-inline: .55rem;
+    font-size: .87rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .course-grid,
+  .foundation-grid,
+  .assessment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lesson-format-list {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-course-label {
+    display: inline-flex;
+    width: fit-content;
+    margin: .35rem .75rem;
+  }
+
+  .course-nav-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .course-selection {
+    padding-top: 2rem;
+  }
+
+  .course-grid,
+  .foundation-grid,
+  .assessment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-card {
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .course-card .button,
+  .course-switch-footer .button {
+    width: 100%;
+  }
+
+  .course-card-topline,
+  .course-progress-line {
+    align-items: flex-start;
+  }
+}
+
+.biostats-hero h1 {
+  font-size: clamp(2.65rem, 5.6vw, 5.35rem);
+  line-height: .98;
+}
+
+@media (max-width: 680px) {
+  .biostats-hero h1 {
+    font-size: clamp(2.3rem, 13vw, 3.5rem);
+    line-height: 1.02;
+  }
+}
+
+/* Structural chromosome expansion */
+.module-visual-section {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.module-visual-section > h4 {
+  margin: 0 0 0.75rem;
+  color: var(--primary);
+}
+
+.module-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.module-visual {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-strong);
+}
+
+.module-visual img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  display: block;
+  padding: 0.45rem;
+  background: #fffaf1;
+}
+
+.module-visual figcaption {
+  padding: 0.7rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.45;
+  border-top: 1px solid var(--line);
+}
+
+.diagram-canvas .diagram-asset {
+  width: min(100%, 760px);
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+}
+
+.structural-note-card h4 {
+  margin: 1.35rem 0 0.55rem;
+  color: var(--primary-dark);
+  font-size: 1.15rem;
+}
+
+.exam-callout {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  background: rgba(216, 159, 91, 0.14);
+  color: var(--ink);
+}
+
+.reference-note {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.reference-note a {
+  color: var(--primary);
+  font-weight: 750;
+}
+
+.structural-atlas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.structural-atlas-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.structural-atlas-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  display: block;
+  padding: 0.4rem;
+  background: #fffaf1;
+}
+
+.structural-atlas-card figcaption {
+  padding: 0.8rem 0.9rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.structural-gallery .image-frame {
+  aspect-ratio: 16 / 10;
+  background: #fffaf1;
+}
+
+@media (max-width: 900px) {
+  .module-visual-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .module-visual-grid,
+  .structural-atlas {
+    grid-template-columns: 1fr;
+  }
+
+  .module-visual img,
+  .structural-atlas-card img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+
+/* Under-construction topic placeholders */
+.under-construction-module,
+.under-construction-card {
+  border-style: dashed;
+  border-color: rgba(216, 159, 91, 0.65);
+  background: linear-gradient(135deg, rgba(255, 250, 241, 0.98), rgba(255, 255, 255, 0.98));
+}
+
+.construction-status,
+.construction-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.34rem 0.68rem;
+  border-radius: 999px;
+  background: rgba(216, 159, 91, 0.18);
+  color: #7a4b12;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.construction-notice {
+  margin: 0 1.2rem 1.2rem;
+  padding: 1rem 1.05rem;
+  border: 1px dashed rgba(216, 159, 91, 0.72);
+  border-radius: 16px;
+  background: rgba(216, 159, 91, 0.10);
+  color: var(--ink);
+}
+
+.construction-notice strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #7a4b12;
+}
+
+.construction-notice p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.under-construction-card {
+  position: relative;
+}
+
+.under-construction-card .construction-badge {
+  margin-top: 0.85rem;
+}
+
+/* Floating return-to-top control */
+.scroll-to-top {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 60;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(58, 25, 34, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.94);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease, background 180ms ease;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top:hover {
+  background: var(--primary-dark, #572332);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.scroll-to-top:focus-visible {
+  outline: 3px solid var(--accent, #d89f5b);
+  outline-offset: 4px;
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 640px) {
+  .scroll-to-top {
+    right: 0.85rem;
+    bottom: 0.85rem;
+    width: 46px;
+    height: 46px;
+  }
+
+  .scroll-to-top svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top {
+    transition: none;
+  }
+}
+
+@media print {
+  .scroll-to-top {
+    display: none !important;
+  }
+}
+

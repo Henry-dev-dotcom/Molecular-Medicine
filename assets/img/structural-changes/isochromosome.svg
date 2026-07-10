@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">Isochromosome</title>
+<desc id="desc">A chromosome with two identical arms instead of one p arm and one q arm. </desc>
+<rect width="1000" height="650" rx="32" fill="#fffaf1"/>
+<rect x="28" y="28" width="944" height="594" rx="28" class="box"/>
+
+  <style>
+    .title{font:800 34px system-ui,-apple-system,Segoe UI,sans-serif;fill:#43141d}
+    .subtitle{font:600 18px system-ui,-apple-system,Segoe UI,sans-serif;fill:#667085}
+    .label{font:800 22px system-ui,-apple-system,Segoe UI,sans-serif;fill:#1f2933}
+    .small{font:650 16px system-ui,-apple-system,Segoe UI,sans-serif;fill:#667085}
+    .gene{font:800 18px system-ui,-apple-system,Segoe UI,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:middle}
+    .note{font:700 17px system-ui,-apple-system,Segoe UI,sans-serif;fill:#582536}
+    .arrow{stroke:#773344;stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .thin{stroke:#667085;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .box{fill:#fff;stroke:#e5d9cf;stroke-width:2}
+  </style>
+<text x="60" y="85" class="title">Isochromosome</text>
+<text x="60" y="118" class="subtitle">A chromosome with two identical arms instead of one p arm and one q arm.</text>
+
+<text x="80" y="180" class="label">Normal chromosome X</text>
+<!-- normal -->
+<rect x="210" y="210" width="80" height="120" rx="36" fill="#d89f5b"/><circle cx="250" cy="350" r="23" fill="#43141d"/><rect x="210" y="373" width="80" height="180" rx="36" fill="#773344"/>
+<text x="250" y="270" class="gene">Xp</text><text x="250" y="465" class="gene">Xq</text>
+<path d="M350 350 L520 350" class="arrow"/><path d="M505 335 L520 350 L505 365" class="arrow"/>
+<text x="435" y="320" class="note" text-anchor="middle">abnormal centromeric division</text>
+<text x="435" y="390" class="small" text-anchor="middle">or U-type exchange</text>
+<text x="600" y="180" class="label">Isochromosome i(X)(q10)</text>
+<!-- isochromosome q -->
+<rect x="690" y="210" width="80" height="150" rx="36" fill="#773344"/><circle cx="730" cy="380" r="23" fill="#43141d"/><rect x="690" y="403" width="80" height="150" rx="36" fill="#773344"/>
+<text x="730" y="285" class="gene">Xq</text><text x="730" y="480" class="gene">Xq</text>
+<path d="M810 265 L890 225" class="thin"/><text x="900" y="215" class="note" text-anchor="end">q arm duplicated</text>
+<path d="M810 500 L900 545" class="thin"/><text x="900" y="580" class="note" text-anchor="end">p arm absent</text>
+<text x="140" y="600" class="small">An isochromosome has two mirror-image copies of one arm and lacks the other arm.</text>
+</svg>

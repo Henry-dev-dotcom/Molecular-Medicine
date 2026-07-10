@@ -1,17 +1,53 @@
 const DATA = window.CHROMOSOME_LEARN_DATA;
-const storageKeys = {
+
+const legacyStorageKeys = {
   completedModules: "cl_phase6_completed_modules",
   checklist: "cl_phase6_checklist",
-  difficult: "cl_phase6_difficult_cards"
+  difficult: "cl_phase6_difficult_cards",
+  examHistory: "cl_phase6_exam_history",
+  lastPlan: "cl_phase6_last_plan"
 };
 
-const examStorageKey = "cl_phase6_exam_history";
-const plannerStorageKey = "cl_phase6_last_plan";
+const storageKeys = {
+  completedModules: "cl_molecular_completed_modules_v1",
+  checklist: "cl_molecular_checklist_v1",
+  difficult: "cl_molecular_difficult_cards_v1"
+};
+
+const examStorageKey = "cl_molecular_exam_history_v1";
+const plannerStorageKey = "cl_molecular_last_plan_v1";
+const biostatStorageKeys = {
+  readiness: "cl_biostatistics_readiness_v1",
+  completedModules: "cl_biostatistics_completed_modules_v1",
+  checklist: "cl_biostatistics_checklist_v1",
+  examHistory: "cl_biostatistics_exam_history_v1",
+  lastPlan: "cl_biostatistics_last_plan_v1"
+};
+const activeCourseStorageKey = "cl_platform_active_course_v1";
+
+function migrateLegacyProgress() {
+  const migrations = [
+    [legacyStorageKeys.completedModules, storageKeys.completedModules],
+    [legacyStorageKeys.checklist, storageKeys.checklist],
+    [legacyStorageKeys.difficult, storageKeys.difficult],
+    [legacyStorageKeys.examHistory, examStorageKey],
+    [legacyStorageKeys.lastPlan, plannerStorageKey]
+  ];
+  migrations.forEach(([legacyKey, newKey]) => {
+    if (localStorage.getItem(newKey) === null && localStorage.getItem(legacyKey) !== null) {
+      localStorage.setItem(newKey, localStorage.getItem(legacyKey));
+    }
+  });
+}
+
+migrateLegacyProgress();
 
 const state = {
   completedModules: new Set(loadArray(storageKeys.completedModules)),
   checklist: new Set(loadArray(storageKeys.checklist)),
   difficult: new Set(loadArray(storageKeys.difficult)),
+  biostatReadiness: new Set(loadArray(biostatStorageKeys.readiness)),
+  activeCourse: "molecular",
   filteredFlashcards: [...DATA.flashcards],
   flashIndex: 0,
   flashFlipped: false,
@@ -45,10 +81,151 @@ function normalise(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function availableMolecularModules() {
+  return DATA.modules.filter((module) => !module.underConstruction);
+}
+
+function molecularProgressPercent() {
+  const availableModules = availableMolecularModules();
+  const availableIds = new Set(availableModules.map((module) => module.id));
+  const completedModuleCount = [...state.completedModules].filter((id) => availableIds.has(id)).length;
+  const total = availableModules.length + DATA.checklist.length;
+  const completed = completedModuleCount + state.checklist.size;
+  return total ? Math.round((completed / total) * 100) : 0;
+}
+
+function biostatReadinessPercent() {
+  const total = document.querySelectorAll("[data-biostat-readiness]").length || 4;
+  return total ? Math.round((state.biostatReadiness.size / total) * 100) : 0;
+}
+
+function updateCourseSummaries() {
+  const molecularNode = $("#molecularCourseProgress");
+  const biostatNode = $("#biostatCourseProgress");
+  if (molecularNode) molecularNode.textContent = `${molecularProgressPercent()}%`;
+  if (biostatNode) biostatNode.textContent = `${biostatReadinessPercent()}%`;
+}
+
+function updateBiostatReadiness() {
+  const boxes = $all("[data-biostat-readiness]");
+  boxes.forEach((box) => {
+    box.checked = state.biostatReadiness.has(box.dataset.biostatReadiness);
+  });
+  const percent = biostatReadinessPercent();
+  const percentNode = $("#biostatReadinessPercent");
+  const fill = $("#biostatProgressFill");
+  const stat = $("#biostatReadinessStat");
+  if (percentNode) percentNode.textContent = percent;
+  if (fill) fill.style.width = `${percent}%`;
+  if (stat) stat.textContent = `${state.biostatReadiness.size}/${boxes.length}`;
+  updateCourseSummaries();
+}
+
+function courseFromHash() {
+  const hash = window.location.hash;
+  if (!hash) return null;
+  if (hash.startsWith("#biostats-")) return "biostatistics";
+  try {
+    const target = document.querySelector(hash);
+    const panel = target?.closest("[data-course-panel]");
+    return panel?.dataset.coursePanel || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function activateCourse(course, options = {}) {
+  const selected = course === "biostatistics" ? "biostatistics" : "molecular";
+  state.activeCourse = selected;
+  localStorage.setItem(activeCourseStorageKey, selected);
+  document.body.dataset.activeCourse = selected;
+
+  $all("[data-course-panel]").forEach((panel) => {
+    const active = panel.dataset.coursePanel === selected;
+    panel.hidden = !active;
+    panel.setAttribute("aria-hidden", String(!active));
+  });
+
+  $all("[data-course-nav]").forEach((group) => {
+    group.hidden = group.dataset.courseNav !== selected;
+  });
+
+  $all("[data-course-card]").forEach((card) => {
+    const active = card.dataset.courseCard === selected;
+    card.classList.toggle("active-course", active);
+    card.setAttribute("aria-current", active ? "true" : "false");
+    const button = card.querySelector("[data-open-course]");
+    if (button) button.textContent = active ? "Continue course" : "Open course";
+  });
+
+  const label = $("#navCourseLabel");
+  if (label) label.textContent = selected === "molecular" ? "Theory of Molecular Medicine" : "Clinical Biostatistics";
+
+  const navLinks = $("#navLinks");
+  const navToggle = $("#navToggle");
+  if (navLinks) navLinks.classList.remove("open");
+  if (navToggle) {
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.textContent = "☰";
+  }
+
+  if (options.target) {
+    const target = document.querySelector(options.target);
+    if (target) {
+      history.replaceState(null, "", options.target);
+      requestAnimationFrame(() => target.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }));
+    }
+  }
+}
+
+function setupCourseCentre() {
+  const saved = localStorage.getItem(activeCourseStorageKey);
+  const initial = courseFromHash() || (saved === "biostatistics" ? "biostatistics" : "molecular");
+  activateCourse(initial, { instant: true });
+
+  $all("[data-open-course]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activateCourse(button.dataset.openCourse, { target: button.dataset.target });
+    });
+  });
+
+  window.addEventListener("hashchange", () => {
+    const hashCourse = courseFromHash();
+    if (hashCourse && hashCourse !== state.activeCourse) activateCourse(hashCourse, { instant: true });
+  });
+
+  updateCourseSummaries();
+}
+
+function setupBiostatisticsReadiness() {
+  $all("[data-biostat-readiness]").forEach((box) => {
+    box.addEventListener("change", () => {
+      const id = box.dataset.biostatReadiness;
+      if (box.checked) state.biostatReadiness.add(id);
+      else state.biostatReadiness.delete(id);
+      saveSet(biostatStorageKeys.readiness, state.biostatReadiness);
+      updateBiostatReadiness();
+    });
+  });
+
+  const reset = $("#resetBiostatProgress");
+  if (reset) {
+    reset.addEventListener("click", () => {
+      if (!confirm("Reset the Clinical Biostatistics readiness checklist?")) return;
+      state.biostatReadiness = new Set();
+      localStorage.removeItem(biostatStorageKeys.readiness);
+      updateBiostatReadiness();
+    });
+  }
+  updateBiostatReadiness();
+}
+
 function updateProgress() {
-  const moduleTotal = DATA.modules.length;
+  const availableModules = availableMolecularModules();
+  const availableIds = new Set(availableModules.map((module) => module.id));
+  const moduleTotal = availableModules.length;
   const checklistTotal = DATA.checklist.length;
-  const moduleDone = state.completedModules.size;
+  const moduleDone = [...state.completedModules].filter((id) => availableIds.has(id)).length;
   const checklistDone = state.checklist.size;
   const totalItems = moduleTotal + checklistTotal;
   const doneItems = moduleDone + checklistDone;
@@ -62,6 +239,7 @@ function updateProgress() {
   const best = getExamHistory().reduce((max, item) => Math.max(max, item.percent || 0), 0);
   const bestNode = $("#bestExamStat");
   if (bestNode) bestNode.textContent = `${best}%`;
+  updateCourseSummaries();
 }
 
 function setupNavigation() {
@@ -107,6 +285,25 @@ function renderModules() {
 
   stack.innerHTML = filtered.map((module, index) => {
     const completed = state.completedModules.has(module.id);
+    const isUnderConstruction = Boolean(module.underConstruction);
+    if (isUnderConstruction) {
+      return `
+        <article class="module-card under-construction-module">
+          <button class="module-header" type="button" aria-expanded="${index === 0 ? "true" : "false"}" data-module-toggle="${module.id}">
+            <span>
+              <small>${module.category}</small>
+              <strong>${module.title}</strong>
+            </span>
+            <span class="module-status construction-status">Under construction</span>
+          </button>
+          <div class="module-body ${index === 0 ? "open" : ""}" id="module-${module.id}">
+            <div class="construction-notice" role="status">
+              <strong>Under construction</strong>
+              <p>${module.summary}</p>
+            </div>
+          </div>
+        </article>`;
+    }
     return `
       <article class="module-card ${completed ? "completed" : ""}">
         <button class="module-header" type="button" aria-expanded="${index === 0 ? "true" : "false"}" data-module-toggle="${module.id}">
@@ -130,6 +327,17 @@ function renderModules() {
               <p>${module.memory}</p>
             </div>
           </div>
+          ${module.visuals?.length ? `
+            <div class="module-visual-section">
+              <h4>Visual guide</h4>
+              <div class="module-visual-grid">
+                ${module.visuals.map((visual) => `
+                  <figure class="module-visual">
+                    <img src="${visual.src}" alt="${visual.alt}" loading="lazy">
+                    <figcaption>${visual.caption}</figcaption>
+                  </figure>`).join("")}
+              </div>
+            </div>` : ""}
           <div class="self-test">
             <span>Quick self-test</span>
             <p>${module.selfTest}</p>
@@ -295,8 +503,8 @@ const diagrams = {
   abnormalities: {
     label: "Abnormalities",
     title: "Structural chromosome changes",
-    description: "Structural abnormalities can remove, copy, reverse or move pieces of chromosomes. These changes may alter gene dosage or create abnormal gene fusions.",
-    bullets: ["Deletion = segment lost.", "Duplication = segment repeated.", "Inversion = segment reversed.", "Translocation = segment moved to another chromosome."],
+    description: "Structural abnormalities can remove, copy, reverse, exchange, fuse or mirror chromosome material. Their effects depend on gene dosage, breakpoint location and whether the change is balanced or unbalanced.",
+    bullets: ["Deletion = segment lost.", "Duplication = segment repeated.", "Inversion = segment reversed.", "Reciprocal translocation = segments exchanged.", "Robertsonian translocation = acrocentric long arms fused.", "Isochromosome = one arm duplicated and the opposite arm lost."],
     svg: `<svg viewBox="0 0 620 360" role="img" aria-label="Structural abnormalities diagram">
       <g font-size="15" font-weight="700">
         <text x="65" y="70">Normal</text><rect x="150" y="50" width="70" height="28" rx="8"/><rect x="225" y="50" width="70" height="28" rx="8" opacity=".75"/><rect x="300" y="50" width="70" height="28" rx="8" opacity=".5"/><rect x="375" y="50" width="70" height="28" rx="8" opacity=".3"/>
@@ -305,6 +513,13 @@ const diagrams = {
         <text x="65" y="285">Inversion</text><rect x="150" y="265" width="70" height="28" rx="8"/><rect x="225" y="265" width="70" height="28" rx="8" opacity=".5"/><rect x="300" y="265" width="70" height="28" rx="8" opacity=".75"/><rect x="375" y="265" width="70" height="28" rx="8" opacity=".3"/>
       </g>
     </svg>`
+  },
+  isochromosome: {
+    label: "Abnormalities",
+    title: "Isochromosome i(X)(q10)",
+    description: "An isochromosome has two identical arms. In i(X)(q10), the long arm of the X chromosome is duplicated and the short arm is absent on the abnormal chromosome.",
+    bullets: ["Two mirror-image Xq arms are present.", "Xp material is lost from the abnormal X chromosome.", "The change is unbalanced because it combines duplication with deletion.", "Constitutional and mosaic forms may occur in Turner syndrome."],
+    svg: `<img class="diagram-asset" src="assets/img/structural-changes/isochromosome.svg" alt="Isochromosome i(X)(q10) formation diagram">`
   },
   prenatal: {
     label: "Clinical",
@@ -986,7 +1201,7 @@ function renderStudyPlan() {
   const days = Number($("#plannerDays").value || 7);
   const focus = $("#plannerFocus").value || "balanced";
   const weakTopics = getWeakTopicsFromHistory();
-  let modules = [...DATA.modules];
+  let modules = [...availableMolecularModules()];
 
   if (focus === "weak" && weakTopics.length) {
     modules.sort((a, b) => {
@@ -1031,15 +1246,16 @@ function setupPlanner() {
 }
 
 function buildReportText() {
-  const moduleTotal = DATA.modules.length;
+  const availableModules = availableMolecularModules();
+  const moduleTotal = availableModules.length;
   const checklistTotal = DATA.checklist.length;
   const history = getExamHistory();
   const best = history.reduce((max, item) => Math.max(max, item.percent || 0), 0);
   const latest = history[0];
   const weakTopics = getWeakTopicsFromHistory();
-  const completedTitles = DATA.modules.filter((module) => state.completedModules.has(module.id)).map((module) => module.title);
+  const completedTitles = availableModules.filter((module) => state.completedModules.has(module.id)).map((module) => module.title);
   const difficultCards = DATA.flashcards.filter((card) => state.difficult.has(card.id)).map((card) => card.term);
-  const notCompleted = DATA.modules.filter((module) => !state.completedModules.has(module.id)).map((module) => module.title);
+  const notCompleted = availableModules.filter((module) => !state.completedModules.has(module.id)).map((module) => module.title);
   const nextSteps = [];
   if (notCompleted.length) nextSteps.push(`Complete remaining modules: ${notCompleted.slice(0, 4).join(", ")}${notCompleted.length > 4 ? ", ..." : ""}.`);
   if (difficultCards.length) nextSteps.push(`Revisit difficult flashcards: ${difficultCards.slice(0, 5).join(", ")}.`);
@@ -1048,7 +1264,7 @@ function buildReportText() {
 
   return {
     generatedAt: new Date().toLocaleString(),
-    moduleProgress: `${state.completedModules.size}/${moduleTotal}`,
+    moduleProgress: `${completedTitles.length}/${moduleTotal}`,
     checklistProgress: `${state.checklist.size}/${checklistTotal}`,
     difficultCount: difficultCards.length,
     best,
@@ -1134,13 +1350,26 @@ function setupReportTools() {
   $("#exportProgress").addEventListener("click", () => {
     const payload = {
       app: "ChromosomeLearn",
-      phase: 6,
+      schemaVersion: 2,
+      platformPhase: 1,
       exportedAt: new Date().toISOString(),
-      completedModules: [...state.completedModules],
-      checklist: [...state.checklist],
-      difficult: [...state.difficult],
-      examHistory: getExamHistory(),
-      lastPlan: JSON.parse(localStorage.getItem(plannerStorageKey) || "null")
+      activeCourse: state.activeCourse,
+      courses: {
+        molecular: {
+          completedModules: [...state.completedModules],
+          checklist: [...state.checklist],
+          difficult: [...state.difficult],
+          examHistory: getExamHistory(),
+          lastPlan: JSON.parse(localStorage.getItem(plannerStorageKey) || "null")
+        },
+        biostatistics: {
+          readiness: [...state.biostatReadiness],
+          completedModules: loadArray(biostatStorageKeys.completedModules),
+          checklist: loadArray(biostatStorageKeys.checklist),
+          examHistory: loadArray(biostatStorageKeys.examHistory),
+          lastPlan: JSON.parse(localStorage.getItem(biostatStorageKeys.lastPlan) || "null")
+        }
+      }
     };
     downloadTextFile("chromosomelearn_progress_backup.json", JSON.stringify(payload, null, 2), "application/json");
   });
@@ -1151,19 +1380,29 @@ function setupReportTools() {
     reader.onload = () => {
       try {
         const payload = JSON.parse(reader.result);
-        state.completedModules = new Set(payload.completedModules || []);
-        state.checklist = new Set(payload.checklist || []);
-        state.difficult = new Set(payload.difficult || []);
+        const molecular = payload.courses?.molecular || payload;
+        const biostatistics = payload.courses?.biostatistics || {};
+        state.completedModules = new Set(molecular.completedModules || []);
+        state.checklist = new Set(molecular.checklist || []);
+        state.difficult = new Set(molecular.difficult || []);
+        state.biostatReadiness = new Set(biostatistics.readiness || []);
         saveSet(storageKeys.completedModules, state.completedModules);
         saveSet(storageKeys.checklist, state.checklist);
         saveSet(storageKeys.difficult, state.difficult);
-        localStorage.setItem(examStorageKey, JSON.stringify(payload.examHistory || []));
-        if (payload.lastPlan) localStorage.setItem(plannerStorageKey, JSON.stringify(payload.lastPlan));
+        saveSet(biostatStorageKeys.readiness, state.biostatReadiness);
+        localStorage.setItem(examStorageKey, JSON.stringify(molecular.examHistory || []));
+        if (molecular.lastPlan) localStorage.setItem(plannerStorageKey, JSON.stringify(molecular.lastPlan));
+        if (biostatistics.completedModules) localStorage.setItem(biostatStorageKeys.completedModules, JSON.stringify(biostatistics.completedModules));
+        if (biostatistics.checklist) localStorage.setItem(biostatStorageKeys.checklist, JSON.stringify(biostatistics.checklist));
+        if (biostatistics.examHistory) localStorage.setItem(biostatStorageKeys.examHistory, JSON.stringify(biostatistics.examHistory));
+        if (biostatistics.lastPlan) localStorage.setItem(biostatStorageKeys.lastPlan, JSON.stringify(biostatistics.lastPlan));
+        if (payload.activeCourse) activateCourse(payload.activeCourse);
         renderModules();
         renderChecklist();
         renderFlashcard();
         renderExamHistory();
         renderRevisionReport();
+        updateBiostatReadiness();
         updateProgress();
         alert("Progress imported successfully.");
       } catch (error) {
@@ -1180,7 +1419,7 @@ function setupPWA() {
   const status = $("#offlineStatus");
   const dot = $("#offlineDot");
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").then(() => {
+    navigator.serviceWorker.register("./sw.js", { scope: "./" }).then(() => {
       if (status) status.textContent = "Offline support ready after first load";
       if (dot) dot.classList.add("ready");
     }).catch(() => {
@@ -1208,9 +1447,41 @@ function setupPWA() {
   }
 }
 
+function setupScrollToTop() {
+  const button = $("#scrollToTop");
+  if (!button) return;
+
+  const revealAfter = 480;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let ticking = false;
+
+  const updateVisibility = () => {
+    const shouldShow = window.scrollY > revealAfter;
+    button.classList.toggle("visible", shouldShow);
+    button.setAttribute("aria-hidden", String(!shouldShow));
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateVisibility);
+  }, { passive: true });
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reducedMotion.matches ? "auto" : "smooth"
+    });
+  });
+
+  updateVisibility();
+}
+
 function setupReset() {
   $("#resetProgress").addEventListener("click", () => {
-    if (!confirm("Reset all saved progress for this website?")) return;
+    if (!confirm("Reset saved progress for Theory of Molecular Medicine? Clinical Biostatistics readiness will not be changed.")) return;
     Object.values(storageKeys).forEach((key) => localStorage.removeItem(key));
     localStorage.removeItem(examStorageKey);
     localStorage.removeItem(plannerStorageKey);
@@ -1229,6 +1500,9 @@ function setupReset() {
 
 function init() {
   setupNavigation();
+  setupScrollToTop();
+  setupCourseCentre();
+  setupBiostatisticsReadiness();
   setupModules();
   setupFlashcards();
   setupDiagrams();
