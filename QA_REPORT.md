@@ -1,128 +1,77 @@
-# ChromosomeLearn Structural-Abnormality Update — QA Report
+# ChromosomeLearn Phase 1 Quality-Assurance Report
 
 ## Release status
 
-**Passed for GitHub Pages deployment.**
+**Passed — Phase 1 course-centre foundation completed.**
 
-## Content implemented
+## Corrections completed
 
-- Expanded the Molecular Medicine structural-abnormality lesson.
-- Added a dedicated isochromosome module covering:
-  - definition and mirror-image arms
-  - centromeric misdivision and U-type exchange
-  - i(X)(q10) notation
-  - Xp loss and Xq gain
-  - Turner syndrome and mosaic forms
-  - karyotype, FISH and chromosomal microarray interpretation
-- Added six original local SVG learning diagrams:
-  - deletion
-  - duplication
-  - inversion
-  - reciprocal translocation
-  - Robertsonian translocation
-  - isochromosome
-- Added new flashcards, glossary material and practice questions.
-- Added the six diagrams to the module cards, full notes, image gallery and offline cache.
-- Added a dedicated isochromosome tab to the diagram lab.
+- Replaced the disabled Clinical Biostatistics button with a functional course workspace.
+- Created separate Molecular Medicine and Clinical Biostatistics course panels.
+- Added course-specific navigation and saved course selection.
+- Added direct-link course detection for course sections.
+- Introduced separate progress-storage namespaces for both courses.
+- Added migration from the earlier Molecular Medicine storage keys.
+- Updated progress export to schema version 2 and retained backward-compatible import.
+- Changed the Molecular Medicine reset action so it does not erase Biostatistics readiness progress.
+- Updated visible branding, footer, manifest and service-worker cache version.
+- Replaced the obsolete development roadmap with the current Phase 1 implementation status.
+- Improved course-card contrast, active states and mobile layouts.
+- Removed obsolete HTML and CSS backup files from the package.
+- Updated README and PRD documentation.
 
-## Automated checks
+## Static validation
 
 | Check | Result |
 |---|---|
-| Deployment QA script | Passed |
-| JavaScript syntax: `data.js` | Passed |
-| JavaScript syntax: `app.js` | Passed |
+| Duplicate HTML IDs | Passed — none found |
+| Internal section links | Passed — no broken links |
+| Local CSS, JavaScript and image references | Passed |
+| Image alternative text | Passed |
+| Button accessible labels | Passed |
+| Course panels, cards, navigation and buttons | Passed |
+| Disabled course-opening buttons | Passed — none found |
+| Manifest JSON and icon reference | Passed |
+| Service-worker asset references | Passed |
+| Obsolete backup files | Passed — none present |
+| JavaScript syntax | Passed |
 | Service-worker syntax | Passed |
-| Duplicate HTML IDs | Passed — none found |
-| Broken local HTML references | Passed — none found |
-| Manifest and icon references | Passed |
-| GitHub project-site relative paths | Passed |
-| New SVG XML parsing | Passed — 6 of 6 |
-| New SVGs included in service-worker cache | Passed — 6 of 6 |
-| New HTML image alternative text | Passed |
-| Molecular Medicine data object loading | Passed |
-| Molecular Medicine module count | Passed — 20 modules |
-| Flashcard count | Passed — 53 cards |
-| Structural-abnormality practice set | Passed — 6 questions |
-| Isochromosome module completeness | Passed |
-| HTTP delivery of core files and new diagrams | Passed — HTTP 200 |
 
-## Visual review
+Static scan totals:
 
-All six SVG diagrams were rasterised and reviewed as a contact sheet. The following were confirmed:
+- 146 unique HTML IDs
+- 35 internal links
+- 2 course panels
+- 2 active course cards
 
-- Labels are readable.
-- Deletion shows the missing segment without removing neighbouring segments.
-- Duplication clearly shows the repeated segment.
-- Inversion shows reversal of segment order.
-- Reciprocal translocation shows exchange between two non-homologous chromosomes.
-- Robertsonian translocation shows fusion of acrocentric long arms and loss of short-arm material.
-- Isochromosome shows duplicated Xq arms and absent Xp on i(X)(q10).
+## Browser runtime validation
 
-## Offline and deployment checks
+The application was loaded in a headless Chromium test environment with the production HTML and JavaScript.
 
-- The service-worker cache was increased to `github-pages-structural-v2`.
-- All six new SVG assets are pre-cached.
-- No root-absolute asset paths were introduced.
-- The existing GitHub Actions Pages workflow remains valid.
-- `.nojekyll`, manifest, icons and deployment workflow remain present.
-
-## Environment limitation
-
-A fresh headless-Chromium runtime screenshot of the complete page could not be completed in the container because Chromium stalled on container-level DBus/inotify restrictions. This was an environment limitation rather than an application error. Static validation, JavaScript parsing, data loading, HTTP delivery and direct visual review of all new diagrams passed.
-
----
-
-# New Topic Placeholder Update — QA Addendum
-
-## Release status
-
-**Passed for GitHub Pages deployment.**
-
-## New sections created
-
-### Theory of Molecular Medicine
-
-- DNA Sequencing
-- DNA Polymorphisms and Human Identification
-- Molecular Detection of Inherited Diseases
-- Quality Assurance and Quality Control in the Molecular Laboratory
-
-Each topic appears in the Molecular Medicine module list with a visible **Under construction** status. A **New topics** filter was added to the module search controls.
-
-### Clinical Biostatistics
-
-- Time Series Analysis
-- Survival Analysis
-
-Both topics appear in the Clinical Biostatistics course map with visible **Under construction** labels.
-
-## Behaviour verified
-
-- The four Molecular Medicine placeholders cannot be marked complete.
-- The placeholders are excluded from course-progress calculations.
-- The placeholders are excluded from generated study plans.
-- The placeholders are excluded from revision-report incomplete-module lists.
-- Existing completed modules and saved progress remain compatible.
-- Service-worker cache version updated to `github-pages-new-topics-v1`.
-
-## Automated checks
-
-| Check | Result |
+| Runtime check | Result |
 |---|---|
-| `data.js` JavaScript syntax | Passed |
-| `app.js` JavaScript syntax | Passed |
-| `sw.js` JavaScript syntax | Passed |
-| GitHub Pages deployment QA script | Passed |
-| Duplicate HTML IDs | Passed — none found |
-| Broken local references | Passed — none found |
-| Required topic titles present | Passed — 6 of 6 |
-| Molecular Medicine placeholders | Passed — 4 |
-| Existing completed Molecular Medicine modules | Preserved — 20 |
-| Clinical Biostatistics course-map cards | Passed — 9 total |
-| New Topics module filter | Passed |
-| Progress exclusion logic | Passed |
+| Document completed loading | Passed |
+| Molecular Medicine selected initially | Passed |
+| Molecular Medicine panel displayed | Passed |
+| Clinical Biostatistics panel hidden initially | Passed |
+| Existing Molecular Medicine modules rendered | Passed — 19 module cards |
+| Exactly one active course card | Passed |
+| Switching to Clinical Biostatistics | Passed |
+| Clinical Biostatistics navigation displayed | Passed |
+| Molecular Medicine navigation hidden after switching | Passed |
+| Biostatistics readiness saved under its own key | Passed |
+| JavaScript runtime exceptions | Passed — 0 exceptions |
 
-## Runtime-environment note
+## Responsive visual review
 
-Headless Chromium could not complete a fresh rendered-page dump in the container because of container-level Chromium/DBus/inotify restrictions. Static validation, JavaScript parsing, local-reference validation and deployment checks all passed.
+The Course Centre and Clinical Biostatistics workspace were rendered at desktop and mobile viewport sizes. The following were confirmed:
+
+- Course cards remain readable and clearly separated.
+- Course buttons expand appropriately on small screens.
+- The mobile navigation collapses to the menu button.
+- Headings and action buttons remain within the viewport.
+- Active course styling remains visible on desktop and mobile.
+
+## Phase boundary
+
+Phase 1 creates the complete two-course foundation. Detailed Clinical Biostatistics lessons, assumptions, Stata examples and exercises remain correctly assigned to Phase 2 and later phases.

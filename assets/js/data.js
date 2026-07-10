@@ -126,48 +126,17 @@ window.CHROMOSOME_LEARN_DATA = {
       id: "structural",
       category: "Abnormalities",
       title: "Structural chromosomal abnormalities",
-      summary: "Structural abnormalities arise when chromosome segments break and are lost, copied, reversed, rearranged or joined to another chromosome. The biological effect depends on the size and location of the change, whether genes are disrupted, and whether the rearrangement changes gene dosage.",
+      summary: "Structural abnormalities happen when chromosome segments are lost, copied, reversed or moved. Major types include deletion, duplication, inversion, insertion and translocation.",
       keyPoints: [
-        "Deletion removes a chromosome segment and usually reduces gene dosage.",
-        "Duplication creates an extra copy of a region and usually increases gene dosage.",
-        "Inversion reverses the orientation of a segment; it may be pericentric or paracentric.",
-        "Reciprocal translocation exchanges segments between non-homologous chromosomes.",
-        "Robertsonian translocation fuses the long arms of two acrocentric chromosomes, commonly 13, 14, 15, 21 or 22.",
-        "Isochromosome formation produces two identical copies of one arm and loss of the opposite arm.",
-        "A balanced rearrangement may preserve the overall amount of important DNA, whereas an unbalanced rearrangement causes net gain or loss."
+        "Deletion means loss of a chromosome segment.",
+        "Duplication means extra copies of a chromosome region.",
+        "Inversion means a chromosome segment breaks and reinserts in the reverse direction.",
+        "Translocation means a chromosome segment attaches to a different chromosome.",
+        "Robertsonian translocation involves fusion of long arms of acrocentric chromosomes."
       ],
-      clinical: "Examples include Cri-du-chat syndrome from 5p deletion, Charcot-Marie-Tooth disease from 17p12 duplication, Philadelphia chromosome t(9;22) in chronic myeloid leukaemia, familial Down syndrome from a Robertsonian translocation, and Turner syndrome variants involving i(X)(q10).",
-      memory: "Delete, duplicate, invert, exchange, fuse, mirror: six words for the major structural changes.",
-      selfTest: "Compare deletion, duplication, inversion, reciprocal translocation, Robertsonian translocation and isochromosome formation in terms of what happens to chromosome material.",
-      visuals: [
-        { src: "assets/img/structural-changes/deletion.svg", alt: "Deletion diagram showing loss of one chromosome segment", caption: "Deletion: a segment is lost." },
-        { src: "assets/img/structural-changes/duplication.svg", alt: "Duplication diagram showing an extra copy of one chromosome segment", caption: "Duplication: a segment is copied." },
-        { src: "assets/img/structural-changes/inversion.svg", alt: "Inversion diagram showing a chromosome segment reversed", caption: "Inversion: a segment is reversed." },
-        { src: "assets/img/structural-changes/reciprocal-translocation.svg", alt: "Reciprocal translocation diagram showing exchange between two chromosomes", caption: "Reciprocal translocation: two chromosomes exchange material." },
-        { src: "assets/img/structural-changes/robertsonian-translocation.svg", alt: "Robertsonian translocation diagram showing fusion of the long arms of acrocentric chromosomes", caption: "Robertsonian translocation: two acrocentric long arms fuse." },
-        { src: "assets/img/structural-changes/isochromosome.svg", alt: "Isochromosome diagram showing two identical long arms and loss of the short arm", caption: "Isochromosome: one arm is duplicated and the other is lost." }
-      ]
-    },
-    {
-      id: "isochromosome",
-      category: "Abnormalities",
-      title: "Isochromosomes: formation, notation and clinical effects",
-      summary: "An isochromosome is an abnormal chromosome made of two mirror-image copies of the same arm. Instead of having one short p arm and one long q arm, it contains either two p arms or two q arms. It is therefore an unbalanced structural abnormality because one arm is duplicated while the other is absent.",
-      keyPoints: [
-        "An isochromosome can form through abnormal division at the centromeric region or through a U-type exchange between sister chromatids.",
-        "The resulting chromosome has two genetically similar arms arranged as mirror images around the centromere.",
-        "i(X)(q10) means an isochromosome of the X chromosome containing two Xq arms joined at the centromeric region.",
-        "In i(X)(q10), Xq material is duplicated while most or all Xp material is missing.",
-        "Loss of dosage-sensitive genes on Xp, including the SHOX region, contributes to short stature and other Turner syndrome features.",
-        "Isochromosomes may occur in every tested cell or as part of a mosaic karyotype, so clinical severity can vary.",
-        "Karyotyping can show the mirror-image chromosome; FISH can confirm arm identity, and chromosomal microarray can demonstrate the associated gain-and-loss pattern."
-      ],
-      clinical: "A recognised Turner syndrome variant is 46,X,i(X)(q10), and mosaic forms such as 45,X/46,X,i(X)(q10) also occur. The phenotype reflects loss of Xp material, duplication of Xq material and the proportion of cells carrying each chromosome complement.",
-      memory: "ISO means identical: an isochromosome has two identical arms. i(X)(q10) = two Xq arms, no normal Xp arm on that chromosome.",
-      selfTest: "Why is i(X)(q10) both a duplication and a deletion, and how can it contribute to Turner syndrome?",
-      visuals: [
-        { src: "assets/img/structural-changes/isochromosome.svg", alt: "Isochromosome formation diagram showing a normal X chromosome becoming i(X)(q10)", caption: "i(X)(q10): Xq is duplicated and Xp is lost." }
-      ]
+      clinical: "Examples include Cri-du-chat from 5p deletion, Williams syndrome from 7q11.23 deletion and Philadelphia chromosome t(9;22) in CML.",
+      memory: "Delete, duplicate, invert, move: these four words explain most structural changes.",
+      selfTest: "What is the difference between reciprocal translocation and Robertsonian translocation?"
     },
     {
       id: "deletions-imprinting",
@@ -237,51 +206,6 @@ window.CHROMOSOME_LEARN_DATA = {
     {"id": "transposable-elements", "category": "Abnormalities", "title": "Transposable elements and structural change", "summary": "Transposable elements are mobile DNA sequences that can contribute to structural abnormalities.", "keyPoints": ["Retrotransposons move by copy-and-paste through an RNA intermediate.", "DNA transposons move by cut-and-paste using transposase.", "Alu elements are about 300 bp and make up at least 10% of human DNA.", "LINE-1 elements can be up to 6 kb and account for nearly 20% of the genome.", "Reverse transcriptase, integrase and transposase are key enzymes."], "clinical": "Insertion or recombination involving repetitive elements can disrupt genes or alter chromosome structure.", "memory": "Retro = RNA copy; DNA transposon = cut and paste.", "selfTest": "Compare Alu and LINE elements in length and genome contribution."},
     {"id": "clinical-indications", "category": "Clinical", "title": "Clinical indications for chromosome analysis", "summary": "Chromosome analysis is requested when clinical features, pregnancy history, fertility problems, cancer or prenatal risk suggest a chromosomal abnormality.", "keyPoints": ["Indications include developmental delay, dysmorphic features, multiple malformations, ambiguous genitalia and intellectual disability.", "Stillbirth and neonatal death may require chromosome analysis for counselling.", "Amenorrhoea, infertility and recurrent miscarriage may indicate chromosomal testing.", "Cancer cytogenetics may guide diagnosis and prognosis.", "Advanced maternal age increases risk for common fetal chromosomal disorders."], "clinical": "Chromosome analysis can guide diagnosis, management, prognosis and family reproductive counselling.", "memory": "Development, death, fertility, family, cancer, pregnancy: these are major testing triggers.", "selfTest": "Give three clinical reasons why chromosome analysis may be requested."},
     {"id": "prenatal-serum-ethics", "category": "Clinical", "title": "Prenatal serum markers, diagnosis and ethics", "summary": "Prenatal testing includes screening and diagnostic methods. Ethical practice requires informed consent, confidentiality and counselling.", "keyPoints": ["NIPT uses cell-free fetal DNA to screen for trisomies 21, 18 and 13 and sex chromosome disorders.", "CVS samples placental tissue; amniocentesis samples amniotic fluid.", "Maternal serum AFP rises in neural tube defects and falls in Down syndrome.", "β-hCG rises in Down syndrome and falls in Edwards syndrome; estriol falls in Down and Edwards syndromes.", "Genetic counselling supports informed reproductive choices."], "clinical": "Prenatal diagnosis can help plan pregnancy management, delivery, neonatal care and future pregnancies.", "memory": "AFP high = neural tube defect; AFP low + hCG high = think Down screening pattern.", "selfTest": "Differentiate prenatal screening from diagnostic testing."}
-    ,
-    {
-      id: "dna-sequencing",
-      category: "New Topics",
-      title: "DNA Sequencing",
-      summary: "This section has been created for DNA Sequencing and is currently under construction.",
-      keyPoints: [],
-      clinical: "Lesson content will be added in a future update.",
-      memory: "Under construction.",
-      selfTest: "This section is not yet available for assessment.",
-      underConstruction: true
-    },
-    {
-      id: "dna-polymorphisms-human-identification",
-      category: "New Topics",
-      title: "DNA Polymorphisms and Human Identification",
-      summary: "This section has been created for DNA Polymorphisms and Human Identification and is currently under construction.",
-      keyPoints: [],
-      clinical: "Lesson content will be added in a future update.",
-      memory: "Under construction.",
-      selfTest: "This section is not yet available for assessment.",
-      underConstruction: true
-    },
-    {
-      id: "molecular-detection-inherited-diseases",
-      category: "New Topics",
-      title: "Molecular Detection of Inherited Diseases",
-      summary: "This section has been created for Molecular Detection of Inherited Diseases and is currently under construction.",
-      keyPoints: [],
-      clinical: "Lesson content will be added in a future update.",
-      memory: "Under construction.",
-      selfTest: "This section is not yet available for assessment.",
-      underConstruction: true
-    },
-    {
-      id: "molecular-laboratory-quality-assurance-control",
-      category: "New Topics",
-      title: "Quality Assurance and Quality Control in the Molecular Laboratory",
-      summary: "This section has been created for Quality Assurance and Quality Control in the Molecular Laboratory and is currently under construction.",
-      keyPoints: [],
-      clinical: "Lesson content will be added in a future update.",
-      memory: "Under construction.",
-      selfTest: "This section is not yet available for assessment.",
-      underConstruction: true
-    }
   ],
   flashcards: [
     { id: "fc1", set: "basics", term: "Cytogenetics", answer: "The study of chromosomes, their structure and inheritance." },
@@ -333,10 +257,7 @@ window.CHROMOSOME_LEARN_DATA = {
     {"id": "fc47", "set": "prenatal", "term": "Maternal serum AFP", "answer": "Increased in neural tube defects and decreased in Down syndrome screening patterns."},
     {"id": "fc48", "set": "prenatal", "term": "Maternal serum β-hCG", "answer": "Often increased in Down syndrome and decreased in Edwards syndrome screening patterns."},
     {"id": "fc49", "set": "prenatal", "term": "Maternal serum estriol", "answer": "Often decreased in Down syndrome and Edwards syndrome screening patterns."},
-    {"id": "fc50", "set": "prenatal", "term": "Genetic counselling", "answer": "Supports informed consent, confidentiality, reproductive choices, family follow-up and understanding of chromosomal test results."},
-    {"id": "fc51", "set": "abnormalities", "term": "Isochromosome", "answer": "An abnormal chromosome containing two mirror-image copies of one arm and lacking the opposite arm."},
-    {"id": "fc52", "set": "abnormalities", "term": "i(X)(q10)", "answer": "An X-chromosome isochromosome with two Xq arms; Xq is duplicated and Xp is absent on the abnormal chromosome."},
-    {"id": "fc53", "set": "abnormalities", "term": "Balanced structural rearrangement", "answer": "A chromosome rearrangement with no major net gain or loss of clinically important material, although breakpoints can still disrupt genes and reproductive risk may remain."}
+    {"id": "fc50", "set": "prenatal", "term": "Genetic counselling", "answer": "Supports informed consent, confidentiality, reproductive choices, family follow-up and understanding of chromosomal test results."}
   ],
   glossary: [
     { term: "Acrocentric", category: "basic", definition: "A chromosome with one arm much longer than the other; chromosomes 13, 14, 15, 21 and 22 are acrocentric." },
@@ -391,7 +312,7 @@ window.CHROMOSOME_LEARN_DATA = {
     {"term": "Fragile site", "category": "abnormality", "definition": "A non-staining gap or break-prone chromosome region associated with genomic instability."},
     {"term": "Haploinsufficiency", "category": "abnormality", "definition": "A situation where one functional copy of a gene is not enough for normal function."},
     {"term": "Histone H1", "category": "basic", "definition": "Linker histone that binds linker DNA and stabilises higher-order chromatin packing."},
-    {"term": "Isochromosome", "category": "abnormality", "definition": "An unbalanced chromosome with two mirror-image copies of one arm and loss of the other; i(X)(q10) contains two Xq arms and is associated with Turner syndrome variants."},
+    {"term": "Isochromosome", "category": "abnormality", "definition": "Abnormal chromosome with mirror-image arms; i(X)(q10) can be associated with Turner syndrome."},
     {"term": "LINE", "category": "abnormality", "definition": "Long interspersed nuclear element; L1 sequences are up to 6 kb and make up a large fraction of the human genome."},
     {"term": "Marker chromosome", "category": "abnormality", "definition": "Extra structurally abnormal chromosome whose origin may be unclear without further testing."},
     {"term": "Maternal serum AFP", "category": "prenatal", "definition": "Alpha-fetoprotein screening marker increased in neural tube defects and decreased in Down syndrome."},
@@ -489,24 +410,6 @@ window.CHROMOSOME_LEARN_DATA = {
         options: ["Acrocentric chromosomes", "Only metacentric chromosomes", "Only mitochondrial chromosomes", "Only chromatids without centromeres"],
         answer: 0,
         explain: "Robertsonian translocations involve fusion of long arms of acrocentric chromosomes."
-      },
-      {
-        q: "What best describes an isochromosome?",
-        options: ["Two identical copies of one chromosome arm with loss of the other arm", "Loss of an entire chromosome pair", "Exchange between mitochondrial DNA molecules", "A chromosome with no centromere"],
-        answer: 0,
-        explain: "An isochromosome contains two mirror-image copies of one arm and lacks the opposite arm."
-      },
-      {
-        q: "In i(X)(q10), which change has occurred?",
-        options: ["Xq is duplicated and Xp is lost", "Xp is duplicated and Xq is lost", "Chromosome 21 is duplicated", "The X chromosome has no centromere"],
-        answer: 0,
-        explain: "i(X)(q10) contains two Xq arms; the abnormal chromosome lacks the normal Xp arm."
-      },
-      {
-        q: "Why is an isochromosome considered unbalanced?",
-        options: ["It creates both a duplication and a deletion", "It always contains two normal chromosomes", "It only changes chromosome staining", "It has no effect on gene dosage"],
-        answer: 0,
-        explain: "One arm is duplicated and the opposite arm is lost, producing a gene-dosage imbalance."
       }
     ],
     "Telomeres and prenatal": [
@@ -712,20 +615,6 @@ window.CHROMOSOME_LEARN_DATA = {
       options: ["Acrocentric chromosomes", "Only metacentric chromosomes", "Only chromosome X", "Mitochondrial chromosomes"],
       answer: 0,
       explain: "Robertsonian translocations involve acrocentric chromosomes such as 13, 14, 15, 21 and 22."
-    },
-    {
-      topic: "Structural abnormalities",
-      q: "Which notation describes an isochromosome containing two copies of the long arm of chromosome X?",
-      options: ["i(X)(q10)", "del(5p)", "t(9;22)", "47,XY,+21"],
-      answer: 0,
-      explain: "i(X)(q10) denotes an X isochromosome made of two q arms joined at the centromeric region."
-    },
-    {
-      topic: "Structural abnormalities",
-      q: "A patient with i(X)(q10) has which dosage pattern on the abnormal X chromosome?",
-      options: ["Gain of Xq and loss of Xp", "Gain of Xp and loss of Xq", "Gain of chromosome 21 only", "No gain or loss of chromosome material"],
-      answer: 0,
-      explain: "The q arm is duplicated and the p arm is absent, producing an unbalanced gain-and-loss pattern."
     },
     {
       topic: "Mosaicism and epigenetics",

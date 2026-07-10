@@ -81,16 +81,10 @@ function normalise(value) {
   return String(value || "").trim().toLowerCase();
 }
 
-function availableMolecularModules() {
-  return DATA.modules.filter((module) => !module.underConstruction);
-}
 
 function molecularProgressPercent() {
-  const availableModules = availableMolecularModules();
-  const availableIds = new Set(availableModules.map((module) => module.id));
-  const completedModuleCount = [...state.completedModules].filter((id) => availableIds.has(id)).length;
-  const total = availableModules.length + DATA.checklist.length;
-  const completed = completedModuleCount + state.checklist.size;
+  const total = DATA.modules.length + DATA.checklist.length;
+  const completed = state.completedModules.size + state.checklist.size;
   return total ? Math.round((completed / total) * 100) : 0;
 }
 
@@ -221,11 +215,9 @@ function setupBiostatisticsReadiness() {
 }
 
 function updateProgress() {
-  const availableModules = availableMolecularModules();
-  const availableIds = new Set(availableModules.map((module) => module.id));
-  const moduleTotal = availableModules.length;
+  const moduleTotal = DATA.modules.length;
   const checklistTotal = DATA.checklist.length;
-  const moduleDone = [...state.completedModules].filter((id) => availableIds.has(id)).length;
+  const moduleDone = state.completedModules.size;
   const checklistDone = state.checklist.size;
   const totalItems = moduleTotal + checklistTotal;
   const doneItems = moduleDone + checklistDone;
@@ -285,25 +277,6 @@ function renderModules() {
 
   stack.innerHTML = filtered.map((module, index) => {
     const completed = state.completedModules.has(module.id);
-    const isUnderConstruction = Boolean(module.underConstruction);
-    if (isUnderConstruction) {
-      return `
-        <article class="module-card under-construction-module">
-          <button class="module-header" type="button" aria-expanded="${index === 0 ? "true" : "false"}" data-module-toggle="${module.id}">
-            <span>
-              <small>${module.category}</small>
-              <strong>${module.title}</strong>
-            </span>
-            <span class="module-status construction-status">Under construction</span>
-          </button>
-          <div class="module-body ${index === 0 ? "open" : ""}" id="module-${module.id}">
-            <div class="construction-notice" role="status">
-              <strong>Under construction</strong>
-              <p>${module.summary}</p>
-            </div>
-          </div>
-        </article>`;
-    }
     return `
       <article class="module-card ${completed ? "completed" : ""}">
         <button class="module-header" type="button" aria-expanded="${index === 0 ? "true" : "false"}" data-module-toggle="${module.id}">
@@ -327,17 +300,6 @@ function renderModules() {
               <p>${module.memory}</p>
             </div>
           </div>
-          ${module.visuals?.length ? `
-            <div class="module-visual-section">
-              <h4>Visual guide</h4>
-              <div class="module-visual-grid">
-                ${module.visuals.map((visual) => `
-                  <figure class="module-visual">
-                    <img src="${visual.src}" alt="${visual.alt}" loading="lazy">
-                    <figcaption>${visual.caption}</figcaption>
-                  </figure>`).join("")}
-              </div>
-            </div>` : ""}
           <div class="self-test">
             <span>Quick self-test</span>
             <p>${module.selfTest}</p>
@@ -503,8 +465,8 @@ const diagrams = {
   abnormalities: {
     label: "Abnormalities",
     title: "Structural chromosome changes",
-    description: "Structural abnormalities can remove, copy, reverse, exchange, fuse or mirror chromosome material. Their effects depend on gene dosage, breakpoint location and whether the change is balanced or unbalanced.",
-    bullets: ["Deletion = segment lost.", "Duplication = segment repeated.", "Inversion = segment reversed.", "Reciprocal translocation = segments exchanged.", "Robertsonian translocation = acrocentric long arms fused.", "Isochromosome = one arm duplicated and the opposite arm lost."],
+    description: "Structural abnormalities can remove, copy, reverse or move pieces of chromosomes. These changes may alter gene dosage or create abnormal gene fusions.",
+    bullets: ["Deletion = segment lost.", "Duplication = segment repeated.", "Inversion = segment reversed.", "Translocation = segment moved to another chromosome."],
     svg: `<svg viewBox="0 0 620 360" role="img" aria-label="Structural abnormalities diagram">
       <g font-size="15" font-weight="700">
         <text x="65" y="70">Normal</text><rect x="150" y="50" width="70" height="28" rx="8"/><rect x="225" y="50" width="70" height="28" rx="8" opacity=".75"/><rect x="300" y="50" width="70" height="28" rx="8" opacity=".5"/><rect x="375" y="50" width="70" height="28" rx="8" opacity=".3"/>
@@ -513,13 +475,6 @@ const diagrams = {
         <text x="65" y="285">Inversion</text><rect x="150" y="265" width="70" height="28" rx="8"/><rect x="225" y="265" width="70" height="28" rx="8" opacity=".5"/><rect x="300" y="265" width="70" height="28" rx="8" opacity=".75"/><rect x="375" y="265" width="70" height="28" rx="8" opacity=".3"/>
       </g>
     </svg>`
-  },
-  isochromosome: {
-    label: "Abnormalities",
-    title: "Isochromosome i(X)(q10)",
-    description: "An isochromosome has two identical arms. In i(X)(q10), the long arm of the X chromosome is duplicated and the short arm is absent on the abnormal chromosome.",
-    bullets: ["Two mirror-image Xq arms are present.", "Xp material is lost from the abnormal X chromosome.", "The change is unbalanced because it combines duplication with deletion.", "Constitutional and mosaic forms may occur in Turner syndrome."],
-    svg: `<img class="diagram-asset" src="assets/img/structural-changes/isochromosome.svg" alt="Isochromosome i(X)(q10) formation diagram">`
   },
   prenatal: {
     label: "Clinical",
@@ -1201,7 +1156,7 @@ function renderStudyPlan() {
   const days = Number($("#plannerDays").value || 7);
   const focus = $("#plannerFocus").value || "balanced";
   const weakTopics = getWeakTopicsFromHistory();
-  let modules = [...availableMolecularModules()];
+  let modules = [...DATA.modules];
 
   if (focus === "weak" && weakTopics.length) {
     modules.sort((a, b) => {
@@ -1246,16 +1201,15 @@ function setupPlanner() {
 }
 
 function buildReportText() {
-  const availableModules = availableMolecularModules();
-  const moduleTotal = availableModules.length;
+  const moduleTotal = DATA.modules.length;
   const checklistTotal = DATA.checklist.length;
   const history = getExamHistory();
   const best = history.reduce((max, item) => Math.max(max, item.percent || 0), 0);
   const latest = history[0];
   const weakTopics = getWeakTopicsFromHistory();
-  const completedTitles = availableModules.filter((module) => state.completedModules.has(module.id)).map((module) => module.title);
+  const completedTitles = DATA.modules.filter((module) => state.completedModules.has(module.id)).map((module) => module.title);
   const difficultCards = DATA.flashcards.filter((card) => state.difficult.has(card.id)).map((card) => card.term);
-  const notCompleted = availableModules.filter((module) => !state.completedModules.has(module.id)).map((module) => module.title);
+  const notCompleted = DATA.modules.filter((module) => !state.completedModules.has(module.id)).map((module) => module.title);
   const nextSteps = [];
   if (notCompleted.length) nextSteps.push(`Complete remaining modules: ${notCompleted.slice(0, 4).join(", ")}${notCompleted.length > 4 ? ", ..." : ""}.`);
   if (difficultCards.length) nextSteps.push(`Revisit difficult flashcards: ${difficultCards.slice(0, 5).join(", ")}.`);
@@ -1264,7 +1218,7 @@ function buildReportText() {
 
   return {
     generatedAt: new Date().toLocaleString(),
-    moduleProgress: `${completedTitles.length}/${moduleTotal}`,
+    moduleProgress: `${state.completedModules.size}/${moduleTotal}`,
     checklistProgress: `${state.checklist.size}/${checklistTotal}`,
     difficultCount: difficultCards.length,
     best,
@@ -1419,7 +1373,7 @@ function setupPWA() {
   const status = $("#offlineStatus");
   const dot = $("#offlineDot");
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js", { scope: "./" }).then(() => {
+    navigator.serviceWorker.register("sw.js").then(() => {
       if (status) status.textContent = "Offline support ready after first load";
       if (dot) dot.classList.add("ready");
     }).catch(() => {
@@ -1447,38 +1401,6 @@ function setupPWA() {
   }
 }
 
-function setupScrollToTop() {
-  const button = $("#scrollToTop");
-  if (!button) return;
-
-  const revealAfter = 480;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let ticking = false;
-
-  const updateVisibility = () => {
-    const shouldShow = window.scrollY > revealAfter;
-    button.classList.toggle("visible", shouldShow);
-    button.setAttribute("aria-hidden", String(!shouldShow));
-    ticking = false;
-  };
-
-  window.addEventListener("scroll", () => {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(updateVisibility);
-  }, { passive: true });
-
-  button.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: reducedMotion.matches ? "auto" : "smooth"
-    });
-  });
-
-  updateVisibility();
-}
-
 function setupReset() {
   $("#resetProgress").addEventListener("click", () => {
     if (!confirm("Reset saved progress for Theory of Molecular Medicine? Clinical Biostatistics readiness will not be changed.")) return;
@@ -1500,7 +1422,6 @@ function setupReset() {
 
 function init() {
   setupNavigation();
-  setupScrollToTop();
   setupCourseCentre();
   setupBiostatisticsReadiness();
   setupModules();

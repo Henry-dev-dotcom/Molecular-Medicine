@@ -1,18 +1,5 @@
 # Image Credits
 
-## Original structural-change diagrams
-
-The following SVG diagrams were created specifically for this ChromosomeLearn update. They are original educational illustrations bundled locally with the website and may be used with this project:
-
-- `assets/img/structural-changes/deletion.svg`
-- `assets/img/structural-changes/duplication.svg`
-- `assets/img/structural-changes/inversion.svg`
-- `assets/img/structural-changes/reciprocal-translocation.svg`
-- `assets/img/structural-changes/robertsonian-translocation.svg`
-- `assets/img/structural-changes/isochromosome.svg`
-
-The diagrams are simplified teaching models rather than cytogenetic photographs. They illustrate segment loss, gain, reversal, exchange, acrocentric long-arm fusion and mirror-arm formation.
-
 This image-enhanced static site uses two types of images.
 
 ## A. Images extracted from the uploaded lecture slides
